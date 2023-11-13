@@ -1,0 +1,39 @@
+@import '../../styles/variables';
+@import '../../styles/responsive';
+@import '../../styles/mixins';
+
+.hero-wrapper {
+  background-color: $color-primary;
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .text {
+      color: $white;
+      margin-bottom: 100px;
+      .hero-new-product {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 10px;
+        opacity: 0.4;
+      }
+      .hero-description {
+        opacity: 0.75;
+        max-width: 350px;
+      }
+      button {
+        @include btn();
+        a {
+          color: $white;
+        }
+      }
+    }
+    .image {
+      .hero-image {
+        height: 800px;
+        width: 800px;
+        object-fit: contain;
+      }
+    }
+  }
+}

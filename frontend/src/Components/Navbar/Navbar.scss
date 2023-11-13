@@ -1,0 +1,58 @@
+@import '../../styles/variables';
+@import '../../styles/responsive';
+
+.navbar-wrapper {
+  background-color: $color-primary;
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+
+    @include devices(mobile) {
+      padding-block: 32px;
+    }
+    .nav-logo {
+      width: 170px;
+    }
+    .nav-links {
+      @include devices(mobile) {
+        display: none;
+      }
+      @include devices(tablet) {
+        display: none;
+      }
+      display: flex;
+      gap: 35px;
+      a {
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        &:hover {
+          scale: 1.2;
+          color: $color-accent;
+        }
+        &.active {
+          color: $color-accent;
+          scale: 1.2;
+        }
+      }
+    }
+    .cart {
+      display: flex;
+      gap: 5px;
+      img {
+        cursor: pointer;
+      }
+      .cart-qty {
+        color: $white;
+        font-size: 13px;
+      }
+    }
+  }
+}

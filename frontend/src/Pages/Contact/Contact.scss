@@ -1,0 +1,108 @@
+@import '../../styles/variables';
+@import '../../styles/responsive';
+@import '../../styles/mixins';
+.container {
+  .contact-wrapper {
+    width: 80%;
+    margin-block: 30px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    @include devices(mobile) {
+      flex-direction: column;
+      margin-block: 20px;
+    }
+
+    .contact-form {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      @include devices(mobile) {
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+      }
+
+      input {
+        font-size: 17px;
+        font-weight: 700;
+        padding: 10px 30px;
+        font-family: 'Manrope', sans-serif;
+        border: 1px solid;
+        width: 100%;
+        opacity: 0.4;
+        border-radius: 10px;
+        @include devices(mobile) {
+          font-size: 14px;
+          width: 60%;
+        }
+        @include devices(tablet) {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+      textarea {
+        opacity: 0.4;
+        font-size: 17px;
+        padding: 10px 30px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        border: 1px solid;
+        width: 100%;
+        border-radius: 10px;
+        @include devices(mobile) {
+          font-size: 14px;
+          margin-top: 0;
+          width: 60%;
+        }
+        @include devices(tablet) {
+          width: 100%;
+          font-size: 16px;
+        }
+      }
+      button {
+        @include btn();
+        margin-top: 0;
+        width: 150px;
+        @include devices(mobile) {
+          margin-top: 10px;
+          font-size: 17px;
+        }
+      }
+    }
+    .contact-details {
+      font-size: 20px;
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+
+      span {
+        a {
+          color: $color-primary;
+          &:hover {
+            color: $color-accent;
+          }
+          &:active {
+            color: $color-accent;
+          }
+        }
+      }
+      @include devices(mobile) {
+        font-size: 17px;
+        margin-top: 20px;
+        width: 100%;
+        align-items: center;
+
+        p {
+          margin-bottom: -10px;
+        }
+      }
+    }
+  }
+  iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+  }
+}
