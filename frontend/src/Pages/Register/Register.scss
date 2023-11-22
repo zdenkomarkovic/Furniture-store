@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+@import '../../styles/responsive';
+@import '../../styles/mixins';
+
+.form-input {
+  width: 30%;
+  margin-inline: auto;
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+}

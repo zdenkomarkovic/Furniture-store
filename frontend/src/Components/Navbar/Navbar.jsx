@@ -4,6 +4,7 @@ import logo from './../../assets/logo.jpg';
 import { motion } from 'framer-motion';
 import cartIcon from '../../assets/icon-cart.svg';
 import './Navbar.scss';
+import { mainNavbarItem } from '../../router/routes';
 
 const Navbar = () => {
   return (
@@ -15,11 +16,13 @@ const Navbar = () => {
           </Link>
         </div>
         <div className='nav-links'>
-          <NavLink to={'/'}>Home</NavLink>
-          <NavLink to={'about'}>About</NavLink>
-          <NavLink to={'products'}>Products</NavLink>
-          <NavLink to={'contact'}>Contact</NavLink>
-          <NavLink to={'stores'}>Stores</NavLink>
+          {mainNavbarItem.map((link, i) => {
+            return (
+              <NavLink key={i} to={link.path}>
+                {link.name}
+              </NavLink>
+            );
+          })}
         </div>
         <div className='cart'>
           <motion.img

@@ -8,13 +8,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    padding-block: 100px;
+    align-items: center;
     .text {
       color: $white;
-      margin-bottom: 100px;
+
       .hero-new-product {
         font-size: 14px;
         font-weight: 400;
         letter-spacing: 10px;
+        text-transform: uppercase;
         opacity: 0.4;
       }
       .hero-description {
@@ -30,9 +34,10 @@
     }
     .image {
       .hero-image {
-        height: 800px;
+        height: auto;
         width: 800px;
         object-fit: contain;
+        border-radius: 50px;
       }
     }
   }
