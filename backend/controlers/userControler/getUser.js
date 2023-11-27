@@ -1,7 +1,9 @@
 const UserModel = require('../../model/userModel');
 
 const getUser = (req, res) => {
-  UserModel.findOne({ name: req.params.name })
+  console.log(req.headers);
+
+  UserModel.findOne({ email: req.params.email })
     .then(user => res.send(user))
     .catch(err => res.send(err));
 };

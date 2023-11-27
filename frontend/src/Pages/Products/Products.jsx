@@ -5,6 +5,7 @@ const Products = () => {
   return (
     <div>
       <Header title='Products' />
+      <div className='container'></div>
     </div>
   );
 };

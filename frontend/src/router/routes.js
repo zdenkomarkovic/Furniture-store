@@ -6,6 +6,8 @@ export const routes = {
   STORES: { path: '/stores', name: 'Stores' },
   PRODUCT_DETAIL: { path: '/product/:id', realPath: id => '/product/' + id },
   REGISTER: { path: '/register', name: 'Register' },
+  ACTIVATE_ACCOUNT: { path: '/activate/:id' },
+  LOGIN: { path: '/login', name: 'Login' },
 };
 
 export const mainNavbarItem = [
@@ -15,4 +17,5 @@ export const mainNavbarItem = [
   routes.CONTACT,
   routes.STORES,
   routes.REGISTER,
+  routes.LOGIN,
 ];

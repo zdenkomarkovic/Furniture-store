@@ -1,6 +1,8 @@
 import About from '../Pages/About/About';
+import ActivateAccountPage from '../Pages/ActivateAccountPage/ActivateAccountPage';
 import Contact from '../Pages/Contact/Contact';
 import Home from '../Pages/Home/Home';
+import Login from '../Pages/Login/Login';
 import Products from '../Pages/Products/Products';
 import Register from '../Pages/Register/Register';
 import Stores from '../Pages/Stores/Stores';
@@ -30,5 +32,13 @@ export const appChildren = [
   {
     path: routes.REGISTER.path,
     element: <Register />,
+  },
+  {
+    path: routes.ACTIVATE_ACCOUNT.path,
+    element: <ActivateAccountPage />,
+  },
+  {
+    path: routes.LOGIN.path,
+    element: <Login />,
   },
 ];

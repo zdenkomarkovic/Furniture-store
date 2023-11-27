@@ -1,0 +1,9 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+.container {
+  display: flex;
+  h1 {
+    margin-inline: auto;
+    color: $color-accent;
+  }
+}

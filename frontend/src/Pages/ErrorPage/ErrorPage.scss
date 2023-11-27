@@ -1,12 +1,15 @@
 .error-page {
-  display: flex;
-  justify-content: center;
   width: 600px;
   height: 600px;
-
-  img {
-    width: 100vw;
-    height: 100vw;
-    object-fit: cover;
+  .container {
+    h3 {
+      margin-top: 300px;
+      padding-top: 300px;
+    }
+    img {
+      width: 500px !important;
+      height: 500px !important;
+      object-fit: contain;
+    }
   }
 }
