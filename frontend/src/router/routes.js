@@ -8,6 +8,9 @@ export const routes = {
   REGISTER: { path: '/register', name: 'Register' },
   ACTIVATE_ACCOUNT: { path: '/activate/:id' },
   LOGIN: { path: '/login', name: 'Login' },
+  DASHBOARD: { path: '/dashboard', name: 'Dashboard' },
+  ADD_PRODUCT: { path: 'addProduct', name: 'Add Product' },
+  ORDERS: { path: 'orders', name: 'Orders' },
 };
 
 export const mainNavbarItem = [
@@ -16,6 +19,10 @@ export const mainNavbarItem = [
   routes.PRODUCTS,
   routes.CONTACT,
   routes.STORES,
-  routes.REGISTER,
-  routes.LOGIN,
+];
+
+export const dashboardSidebarItem = [
+  routes.DASHBOARD,
+  routes.ADD_PRODUCT,
+  routes.ORDERS,
 ];

@@ -4,9 +4,14 @@ import logo from './../../assets/logo.jpg';
 import { motion } from 'framer-motion';
 import cartIcon from '../../assets/icon-cart.svg';
 import './Navbar.scss';
-import { mainNavbarItem } from '../../router/routes';
+import { mainNavbarItem, routes } from '../../router/routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUser } from '../../store/userSlice';
 
 const Navbar = () => {
+  const { user } = useSelector(store => store.userStore);
+  const dispatch = useDispatch();
+
   return (
     <div className='navbar-wrapper'>
       <div className='navbar container'>
@@ -24,6 +29,7 @@ const Navbar = () => {
             );
           })}
         </div>
+
         <div className='cart'>
           <motion.img
             src={cartIcon}
@@ -32,6 +38,21 @@ const Navbar = () => {
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           />
           <span className='cart-qty'>(1)</span>
+        </div>
+        <div className='log nav-links'>
+          <button>
+            {user.hasOwnProperty('email') ? user.name : 'My Account'}
+          </button>
+
+          <Link to={routes.REGISTER.path}>Register</Link>
+          {user.hasOwnProperty('email') ? (
+            <div>
+              <Link to={routes.DASHBOARD.path}>{routes.DASHBOARD.name}</Link>
+              <button onClick={() => dispatch(logoutUser())}>Logout</button>
+            </div>
+          ) : (
+            <Link to={routes.LOGIN.path}>Login</Link>
+          )}
         </div>
       </div>
     </div>

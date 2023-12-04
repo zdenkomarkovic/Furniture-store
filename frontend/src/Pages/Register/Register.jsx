@@ -3,6 +3,7 @@ import './Register.scss';
 import { useState } from 'react';
 import UserService from '../../services/userService';
 import Header from '../../Components/Header/Header';
+import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
   const [inputData, setInputData] = useState({
@@ -20,6 +21,7 @@ const RegisterPage = () => {
         if (res.status === 201) {
           console.log(res.data.msg);
         }
+        toast.success('Check your email address for authentication link');
       })
       .catch(err => console.log(err));
   };

@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+@import '../../styles/responsive';
+@import '../../styles/typography';
+
+.header {
+  background-color: $color-primary;
+  .container {
+    justify-content: space-between;
+
+    h3 {
+      color: white;
+    }
+    ul {
+      li {
+        button {
+          color: white;
+        }
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}
+.wrapper {
+  display: flex;
+  aside {
+    width: 8%;
+    height: 100vh;
+    background-color: $color-primary;
+    padding-left: 20px;
+
+    a {
+      color: white;
+    }
+  }
+  .content-wrapper {
+    margin-inline: auto;
+  }
+}

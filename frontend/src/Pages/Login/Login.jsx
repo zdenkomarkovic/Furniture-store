@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
-import { LS_KEY } from '../../config/config';
+import { LS_TOKEN } from '../../config/config';
 import { routes } from '../../router/routes';
 import UserService from '../../services/userService';
+import { setUser } from '../../store/userSlice';
 import './Login.scss';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [inputData, setInputData] = useState({
     email: '',
     password: '',
@@ -23,10 +27,12 @@ const Login = () => {
           console.log(res.data.msg);
         } else {
           console.log(res.data);
-          localStorage.setItem(LS_KEY, res.data.token);
+          dispatch(setUser(res.data.user));
+          localStorage.setItem(LS_TOKEN, res.data.token);
+          toast.success('You are logged successfully');
           setTimeout(() => {
-            navigate(routes.HOME.path);
-          }, 500);
+            navigate(routes.DASHBOARD.path);
+          }, 2000);
         }
       })
       .catch(err => {
