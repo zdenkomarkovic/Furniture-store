@@ -1,96 +1,73 @@
+import { motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
-import ProductCard from '../../Components/ProductCard/ProductCard';
 import ProductService from '../../services/ProductService';
+import { Link } from 'react-router-dom';
+import './Products.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { storeAllProducts } from '../../store/productSlice';
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [count, setCount] = useState();
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  let limit = searchParams.get('limit')
-    ? parseInt(searchParams.get('limit'))
-    : 9;
-  let page = searchParams.get('page') ? parseInt(searchParams.get('page')) : 1;
+  const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { products } = useSelector(state => state.productStore);
 
   useEffect(() => {
-    setSearchParams({ limit, page });
-    ProductService.pagination(limit, page)
+    ProductService.getAllProducts()
       .then(res => {
-        setProducts(res.data.products);
-        setCount(res.data.count);
+        dispatch(storeAllProducts(res.data));
+
+        setIsLoading(false);
       })
-      .catch(err => {});
-  }, [searchParams]);
-
-  const showProducts = () => {
-    return products.map((product, i) => {
-      return <ProductCard key={i} product={product} />;
-    });
-  };
-
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      setSearchParams({ limit, page: page - 1 });
-    }
-  };
-  const handleNextPage = () => {
-    if (page < Math.ceil(count / limit)) {
-      setSearchParams({ limit, page: page + 1 });
-    }
-  };
-  const renderPageBtn = () => {
-    let numberPage = Math.ceil(count / limit);
-    return Array(numberPage)
-      .fill(1)
-      .map((el, i) => {
-        return (
-          <li className='page-item' key={i}>
-            <button className='page-link' name={el + i} onClick={changePage}>
-              {el + i}
-            </button>
-          </li>
-        );
+      .catch(err => {
+        console.log(err);
+        setIsLoading(false);
       });
-  };
-
-  const changePage = e => {
-    setSearchParams({ limit, page: e.target.name });
-  };
+  }, []);
 
   return (
-    <div>
+    <>
       <Header title='Products' />
-      <div className='container'>
-        <nav aria-label='Page navigation example'>
-          <ul className='pagination'>
-            <li className='page-item'>
-              <button
-                href='#'
-                className='page-link'
-                aria-label='Previous'
-                onClick={handlePreviousPage}
+      <div className='container products-wrapper'>
+        {isLoading ? (
+          <div className='products'>
+            {Array.from({ length: 6 }).map((_, id) => (
+              <motion.div key={id} className='card skeleton'></motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className='products'>
+            {products.map((product, i) => (
+              <motion.div
+                whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+                transition={{ duration: 0.5 }}
+                className='card'
+                key={i}
               >
-                <span aria-hidden='true'>&laquo;</span>
-              </button>
-            </li>
-            {count && renderPageBtn()}
-            <li className='page-item'>
-              <button
-                href='#'
-                className='page-link'
-                aria-label='Next'
-                onClick={handleNextPage}
-              >
-                <span aria-hidden='true'>&raquo;</span>
-              </button>
-            </li>
-          </ul>
-        </nav>
+                <div className='image'>
+                  <img src={product.thumbnail} alt={product.name} />
+                </div>
+                <div className='text'>
+                  <h6>{product.title}</h6>
+                  <p>$ {product.price.toLocaleString()}</p>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 400,
+                      damping: 10,
+                    }}
+                    className='product-btn'
+                  >
+                    <Link to={`/single/${product._id}`}>Details</Link>
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 

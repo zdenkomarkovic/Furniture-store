@@ -3,6 +3,7 @@ import './AddProduct.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FileParser } from '../../utils/FileParser';
+import ProductService from '../../services/ProductService';
 
 const VALID_TYPE = ['image/jpg', 'image/png', 'image/jpeg', 'image/svg'];
 const KB = 1024;
@@ -34,8 +35,31 @@ const AddProduct = () => {
         .test('fileSize', 'Invalid file size', value => value.size < 2 * MB),
     }),
     onSubmit: values => {
-      FileParser(values.thumbnail).then(res => console.log(res));
-      console.log(values);
+      FileParser(values.thumbnail)
+        .then(res => {
+          values.thumbnail = res;
+          console.log(values);
+          ProductService.addProduct(values)
+            .then(res => {
+              toast(res.data, {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+              });
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      formik.resetForm();
     },
   });
 
@@ -98,8 +122,8 @@ const AddProduct = () => {
             <option value='' disabled={true}>
               Brand
             </option>
-            <option value='1'>Brand1</option>
-            <option value='2'>Brand2</option>
+            <option value='656e72ad16f59789743b0719'>Brand1</option>
+            <option value='656e72e216f59789743b071a'>Brand2</option>
           </select>
           <label>
             Category <span>{showError('category')}</span>
@@ -112,8 +136,8 @@ const AddProduct = () => {
             <option value='' disabled={true}>
               category
             </option>
-            <option value='1'>category1</option>
-            <option value='2'>category2</option>
+            <option value='656e72fb16f59789743b071b'>category1</option>
+            <option value='656e730e16f59789743b071c'>category2</option>
           </select>
           <label>
             Description <span>{showError('description')}</span>

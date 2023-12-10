@@ -1,23 +1,55 @@
 @import '../../styles/variables';
 @import '../../styles/responsive';
 @import '../../styles/mixins';
-.container {
+
+.contact-page {
+  margin-block: 5vw;
+  display: flex;
+  justify-content: space-between;
   .contact-wrapper {
-    width: 80%;
-    margin-block: 30px;
-    margin-inline: auto;
+    align-items: left;
+    width: 30%;
+
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-around;
     @include devices(mobile) {
       flex-direction: column;
       margin-block: 20px;
     }
+    .contact-details {
+      font-size: 20px;
 
+      display: flex;
+      flex-direction: column;
+
+      span {
+        a {
+          color: $color-primary;
+          &:hover {
+            color: $color-accent;
+          }
+          &:active {
+            color: $color-accent;
+          }
+        }
+      }
+      @include devices(mobile) {
+        font-size: 17px;
+        margin-top: 20px;
+        width: 100%;
+        align-items: center;
+
+        p {
+          margin-bottom: -10px;
+        }
+      }
+    }
     .contact-form {
-      width: 45%;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      width: 100%;
       @include devices(mobile) {
         width: 100%;
         gap: 10px;
@@ -30,7 +62,6 @@
         padding: 10px 30px;
         font-family: 'Manrope', sans-serif;
         border: 1px solid;
-        width: 100%;
         opacity: 0.4;
         border-radius: 10px;
         @include devices(mobile) {
@@ -71,38 +102,13 @@
         }
       }
     }
-    .contact-details {
-      font-size: 20px;
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-
-      span {
-        a {
-          color: $color-primary;
-          &:hover {
-            color: $color-accent;
-          }
-          &:active {
-            color: $color-accent;
-          }
-        }
-      }
-      @include devices(mobile) {
-        font-size: 17px;
-        margin-top: 20px;
-        width: 100%;
-        align-items: center;
-
-        p {
-          margin-bottom: -10px;
-        }
-      }
-    }
   }
-  iframe {
-    width: 100%;
-    height: 700px;
+  .map {
+    width: 60%;
+    height: 500px;
     border: none;
+    iframe {
+      width: 100%;
+    }
   }
 }

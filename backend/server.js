@@ -6,10 +6,13 @@ const dbUrl = require('./config/configDb');
 
 app.use(cors());
 
-mongoose.connect(dbUrl).then(res => console.log('MongoDb connected'));
+mongoose
+  .connect(dbUrl)
+  .then(() => console.log('MongoDb connected'))
+  .catch(err => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 app.use('/', require('./routes'));
 

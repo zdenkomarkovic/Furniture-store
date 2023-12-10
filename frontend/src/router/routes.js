@@ -11,6 +11,7 @@ export const routes = {
   DASHBOARD: { path: '/dashboard', name: 'Dashboard' },
   ADD_PRODUCT: { path: 'addProduct', name: 'Add Product' },
   ORDERS: { path: 'orders', name: 'Orders' },
+  SINGLE: { path: '/single/:id' },
 };
 
 export const mainNavbarItem = [

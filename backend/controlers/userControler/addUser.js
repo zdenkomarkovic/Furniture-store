@@ -2,9 +2,9 @@ const UserModel = require('../../model/userModel');
 
 const addUser = (req, res) => {
   let user = {
-    name: 'Zdenko Markovic',
+    name: '',
 
-    password: '123',
+    password: '',
   };
   let newUser = new UserModel(user);
   newUser

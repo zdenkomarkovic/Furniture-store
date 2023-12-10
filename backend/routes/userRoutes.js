@@ -17,6 +17,7 @@ router.get(
   verifyToken,
   require('../controlers/userControler/getUser')
 );
+router.get('/:id', require('../controlers/userControler/getSingleUser'));
 
 router.post('/register', require('../controlers/userControler/register'));
 router.post('/login', require('../controlers/userControler/login'));

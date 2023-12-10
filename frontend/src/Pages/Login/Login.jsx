@@ -24,7 +24,6 @@ const Login = () => {
     UserService.login(inputData)
       .then(res => {
         if (res.status === 201) {
-          console.log(res.data.msg);
         } else {
           console.log(res.data);
           dispatch(setUser(res.data.user));

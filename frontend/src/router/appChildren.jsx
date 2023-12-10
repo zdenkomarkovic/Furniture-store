@@ -5,6 +5,7 @@ import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
 import Products from '../Pages/Products/Products';
 import Register from '../Pages/Register/Register';
+import Single from '../Pages/Single/Single';
 import Stores from '../Pages/Stores/Stores';
 import { routes } from './routes';
 
@@ -40,5 +41,9 @@ export const appChildren = [
   {
     path: routes.LOGIN.path,
     element: <Login />,
+  },
+  {
+    path: routes.SINGLE.path,
+    element: <Single />,
   },
 ];

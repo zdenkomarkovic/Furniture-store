@@ -1,15 +1,13 @@
 .error-page {
   width: 600px;
   height: 600px;
-  .container {
-    h3 {
-      margin-top: 300px;
-      padding-top: 300px;
-    }
-    img {
-      width: 500px !important;
-      height: 500px !important;
-      object-fit: contain;
-    }
+  h3 {
+    margin-top: 300px;
+    padding-top: 300px;
+  }
+  img {
+    width: 500px !important;
+    height: 500px !important;
+    object-fit: contain;
   }
 }

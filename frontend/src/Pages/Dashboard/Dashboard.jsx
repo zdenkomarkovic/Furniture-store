@@ -7,7 +7,7 @@ const Dashboard = () => {
   return (
     <section className='dashboard-wrapper'>
       <div className='header'>
-        <div className='container'>
+        <div className='container dash-wrapper'>
           <div>
             <h3>Furniture store</h3>
           </div>

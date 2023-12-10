@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/responsive';
+
+.products-wrapper {
+  display: flow-root;
+  .products {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    align-items: center;
+    justify-items: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    margin-inline: auto;
+
+    .card {
+      margin-bottom: 60px;
+      width: 350px;
+      @include devices(mobile) {
+        width: 100%;
+      }
+      .image {
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+        img {
+          width: 100%;
+          height: 300px;
+          object-fit: cover;
+          transition: $transition;
+          &:hover {
+            scale: 1.1;
+          }
+        }
+      }
+      .text {
+        text-align: center;
+        h6 {
+          color: $color-accent;
+          @include devices(mobile) {
+            font-size: 18px;
+          }
+        }
+        p {
+          font-weight: 700;
+        }
+        .product-btn {
+          @include btn($color-accent, $color-accent-hover, none);
+          margin-top: 0;
+          a {
+            color: $white;
+          }
+        }
+      }
+      &.skeleton {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        height: 300px;
+        animation: skeleton-loading 1.5s infinite alternate;
+      }
+    }
+  }
+}
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
