@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { dashboardSidebarItem } from '../../router/routes';
+import { dashboardSidebarItem, routes } from '../../router/routes';
 import './Dashboard.scss';
 
 const Dashboard = () => {
+  const { user } = useSelector(state => state.userStore);
   return (
     <section className='dashboard-wrapper'>
       <div className='header'>
@@ -14,20 +16,14 @@ const Dashboard = () => {
           <div>
             <ul className='nav'>
               <li className='dropdown'>
-                <button>User</button>
+                <button>{user.name}</button>
 
                 <ul className='dropdown-menu'>
                   <li>
-                    <Link className='dropdown-item'>Action</Link>
+                    <Link className='dropdown-item'>1</Link>
                   </li>
                   <li>
-                    <Link className='dropdown-item'>Another action</Link>
-                  </li>
-                  <li>
-                    <Link className='dropdown-item'>Something else here</Link>
-                  </li>
-                  <li>
-                    <Link className='dropdown-item'>Another link</Link>
+                    <Link className='dropdown-item'>2</Link>
                   </li>
                 </ul>
               </li>
@@ -39,6 +35,7 @@ const Dashboard = () => {
         <div className=' wrapper'>
           <aside>
             <ul className='list-group'>
+              <NavLink to={routes.HOME.path}>{routes.HOME.name}</NavLink>
               {dashboardSidebarItem.map((item, i) => {
                 return (
                   <li key={i}>

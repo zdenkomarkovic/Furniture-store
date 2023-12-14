@@ -1,0 +1,131 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/responsive';
+
+.checkout-modal-wrapper {
+  width: 540px;
+  border-radius: 8px;
+  background: $white;
+  padding: 48px;
+  overflow-y: auto;
+  @include devices(mobile) {
+    width: 90%;
+    padding: 25px;
+  }
+  @include devices(tablet) {
+    width: 80%;
+    padding: 35px;
+  }
+  h3 {
+    max-width: 280px;
+  }
+  .info {
+    opacity: 0.5;
+    font-weight: 500;
+    margin-bottom: 35px;
+  }
+  .order-details {
+    display: flex;
+    justify-content: space-between;
+    .products {
+      flex: 0 0 60%;
+      background: $color-light-grey;
+      padding: 24px;
+      border-radius: 8px 0 0 8px;
+      @include devices(mobile) {
+        padding: 10px;
+      }
+      .product-details {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+        .product {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          .img {
+            img {
+              width: 64px;
+              height: 64px;
+              object-fit: cover;
+              border-radius: 8px;
+            }
+          }
+          .text {
+            p {
+              margin: 0;
+              font-weight: 700;
+              &:nth-of-type(2) {
+                opacity: 0.5;
+              }
+            }
+          }
+        }
+        .qty-wrapper {
+          .qty {
+            font-size: 15px;
+            font-weight: 700;
+            opacity: 0.5;
+          }
+        }
+      }
+      .line {
+        opacity: 0.1;
+        border: none;
+        height: 1px;
+        background-color: $black;
+      }
+      .items-number {
+        font-size: 12px;
+        font-weight: 700;
+        text-align: center;
+        margin: 0;
+        opacity: 0.5;
+        letter-spacing: 0.5px;
+      }
+    }
+    .total {
+      flex: 0 0 40%;
+      border-radius: 0 8px 8px 0;
+      background-color: $black;
+      color: $white;
+      padding-inline: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      @include devices(mobile) {
+        padding-inline: 10px;
+        text-align: center;
+      }
+      p {
+        margin: 00;
+        text-transform: uppercase;
+      }
+      .grand-total {
+        font-weight: 500;
+        opacity: 0.5;
+        @include devices(mobile) {
+          font-size: 13px;
+        }
+      }
+      .price-total {
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: 4px;
+        @include devices(mobile) {
+          font-size: 15px;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .back-to-home-btn {
+    @include btn;
+    width: 100%;
+    transition: $transition;
+  }
+}

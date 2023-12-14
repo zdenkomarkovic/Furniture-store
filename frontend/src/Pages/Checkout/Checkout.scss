@@ -1,0 +1,205 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/responsive';
+
+.checkout-wrapper {
+  padding-top: 80px;
+  background-color: $color-light-grey;
+  @include devices(mobile) {
+    padding-top: 20px;
+  }
+  @include devices(tablet) {
+    padding-top: 40px;
+  }
+
+  a {
+    color: $color-primary;
+    transition: $transition;
+    cursor: pointer;
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  .checkout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px 0 100px 0;
+
+    @include devices(mobile) {
+      padding: 20px 0 100px 0;
+      flex-direction: column;
+      gap: 32px;
+    }
+    @include devices(tablet) {
+      padding: 40px 0 100px 0;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .details,
+    .summary {
+      background-color: $white;
+      border-radius: 8px;
+    }
+    .details {
+      flex: 0 0 70%;
+      padding: 50px;
+      @include devices(mobile) {
+        width: 100%;
+        padding: 24px;
+      }
+
+      @include devices(tablet) {
+        width: 100%;
+        padding: 32px;
+      }
+      h3 {
+        margin: 0 0 20px 0;
+      }
+      form {
+        width: 100%;
+        .details-title {
+          color: $color-accent;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          margin-top: 20px;
+        }
+        label {
+          @include label;
+          &.error {
+            color: $color-error;
+          }
+        }
+        input {
+          @include input;
+          &.error {
+            outline: 1px solid $color-error;
+          }
+        }
+        .inputs {
+          display: flex;
+          justify-content: space-between;
+          gap: 16px;
+          margin-bottom: 14px;
+          @include devices(mobile) {
+            flex-direction: column;
+          }
+          .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            .error-msg {
+              color: $color-error;
+              text-transform: capitalize;
+              font-size: 12px;
+              font-weight: 700;
+              letter-spacing: 0.2px;
+            }
+          }
+        }
+      }
+    }
+    .summary {
+      flex: 0 0 28%;
+      padding: 30px;
+      @include devices(mobile) {
+        width: 100%;
+        padding: 32px 24;
+      }
+
+      @include devices(tablet) {
+        width: 100%;
+        padding: 32px;
+      }
+      h6 {
+        margin: 0;
+      }
+      .summary-middle {
+        margin-top: 30px;
+        .product-details {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+
+          .product {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .img {
+              img {
+                width: 64px;
+                height: 64px;
+                object-fit: cover;
+                border-radius: 8px;
+              }
+            }
+            .text {
+              p {
+                margin: 0;
+                font-weight: 700;
+                max-width: 100px;
+              }
+              p {
+                &:nth-of-type(2) {
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+          .qty-delete {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            .qty {
+              font-size: 15px;
+              font-weight: 700;
+              opacity: 0.5;
+            }
+          }
+        }
+      }
+      .summary-bottom {
+        .price-details,
+        .grand-total {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        .total {
+          span {
+            text-transform: uppercase;
+            font-weight: 500;
+            opacity: 0.5;
+          }
+        }
+        .price {
+          span {
+            font-size: 18px;
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+        }
+        .grand-total {
+          margin-top: 25px;
+          .price {
+            span {
+              color: $color-accent;
+            }
+          }
+        }
+      }
+      .summary-btn {
+        @include btn($color-accent, $color-accent-hover, none);
+        margin-top: 10px;
+        color: $white;
+        width: 100%;
+        transition: $transition;
+      }
+    }
+  }
+}

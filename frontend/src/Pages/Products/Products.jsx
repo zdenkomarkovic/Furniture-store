@@ -38,31 +38,32 @@ const Products = () => {
         ) : (
           <div className='products'>
             {products.map((product, i) => (
-              <motion.div
-                whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
-                transition={{ duration: 0.5 }}
-                className='card'
-                key={i}
-              >
-                <div className='image'>
-                  <img src={product.thumbnail} alt={product.name} />
-                </div>
-                <div className='text'>
-                  <h6>{product.title}</h6>
-                  <p>$ {product.price.toLocaleString()}</p>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 400,
-                      damping: 10,
-                    }}
-                    className='product-btn'
-                  >
-                    <Link to={`/single/${product._id}`}>Details</Link>
-                  </motion.button>
-                </div>
-              </motion.div>
+              <Link to={`/single/${product._id}`} key={i}>
+                <motion.div
+                  whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+                  transition={{ duration: 0.5 }}
+                  className='card'
+                >
+                  <div className='image'>
+                    <img src={product.thumbnail} alt={product.name} />
+                  </div>
+                  <div className='text'>
+                    <h6>{product.title}</h6>
+                    <p>$ {product.price.toLocaleString()}</p>
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 400,
+                        damping: 10,
+                      }}
+                      className='product-btn'
+                    >
+                      Details
+                    </motion.button>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         )}

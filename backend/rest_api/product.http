@@ -1,1 +1,4 @@
 GET http://localhost:4000/product/656e78b8ccf8c140c0c1a9a8
+
+
+GET http://localhost:4000/product/getAllProducts

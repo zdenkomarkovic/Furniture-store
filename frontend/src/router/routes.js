@@ -12,6 +12,7 @@ export const routes = {
   ADD_PRODUCT: { path: 'addProduct', name: 'Add Product' },
   ORDERS: { path: 'orders', name: 'Orders' },
   SINGLE: { path: '/single/:id' },
+  CHECKOUT: { path: '/checkout' },
 };
 
 export const mainNavbarItem = [

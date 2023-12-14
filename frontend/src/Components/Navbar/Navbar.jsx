@@ -8,9 +8,14 @@ import { mainNavbarItem, routes } from '../../router/routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../store/userSlice';
 
-const Navbar = () => {
+const Navbar = ({ setCartDisplay }) => {
   const { user } = useSelector(store => store.userStore);
   const dispatch = useDispatch();
+  const { cart } = useSelector(state => state.cartStore);
+
+  const toggleCart = () => {
+    setCartDisplay(prev => !prev);
+  };
 
   return (
     <div className='navbar-wrapper'>
@@ -36,8 +41,11 @@ const Navbar = () => {
             alt='cart-icon'
             whileHover={{ scale: 1.3 }}
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            onClick={toggleCart}
           />
-          <span className='cart-qty'>(1)</span>
+          {cart.length > 0 ? (
+            <span className='cart-qty'>({cart.length})</span>
+          ) : null}
         </div>
         <div className='log nav-links'>
           <button>

@@ -1,5 +1,6 @@
 import About from '../Pages/About/About';
 import ActivateAccountPage from '../Pages/ActivateAccountPage/ActivateAccountPage';
+import Checkout from '../Pages/Checkout/Checkout';
 import Contact from '../Pages/Contact/Contact';
 import Home from '../Pages/Home/Home';
 import Login from '../Pages/Login/Login';
@@ -45,5 +46,9 @@ export const appChildren = [
   {
     path: routes.SINGLE.path,
     element: <Single />,
+  },
+  {
+    path: routes.CHECKOUT.path,
+    element: <Checkout />,
   },
 ];

@@ -24,7 +24,7 @@ const ActivateAccountPage = () => {
       });
   });
   return (
-    <div className='container'>
+    <div className='container activate'>
       <h1>{message}</h1>
     </div>
   );
