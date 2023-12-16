@@ -1,7 +1,7 @@
 const UserModel = require('../../model/userModel');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { privateKey } = require('../../config/configVars');
+const { httpStatus } = require('../../config/constants');
+const n = require('../../utils/jwt');
 
 const login = (req, res) => {
   const { email, password } = req.body;
@@ -13,16 +13,27 @@ const login = (req, res) => {
           if (err) {
             res.status(415).send(err);
           } else if (result) {
-            delete user.password;
-            jwt.sign(
-              { id: user._id },
-              privateKey,
-              { algorithm: 'HS256' },
-              (err, token) => {
-                console.log(token);
-                res.send({ user, token });
-              }
+            const { password, ...currentUser } = user;
+            // jwt.sign(
+            //   { id: user._id },
+            //   privateKey,
+            //   { algorithm: 'HS256' },
+            //   (err, token) => {
+            //     console.log(token);
+            //     res.send({ user, token });
+            //   }
+            // );
+            let token = n(
+              {
+                _id: currentUser._id,
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
+                role: currentUser.role,
+                time: new Date().getTime(),
+              },
+              '1d'
             );
+            res.send({ user: currentUser, token });
           } else {
             res
               .status(201)

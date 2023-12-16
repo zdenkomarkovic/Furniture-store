@@ -2,12 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const dbUrl = require('./config/configDb');
+
+const { DB_URL, PORT } = require('./config/configDb');
 
 app.use(cors());
 
 mongoose
-  .connect(dbUrl)
+  .connect(DB_URL)
   .then(() => console.log('MongoDb connected'))
   .catch(err => console.log(err));
 
@@ -16,6 +17,6 @@ app.use(express.json({ limit: '10mb' }));
 
 app.use('/', require('./routes'));
 
-app.listen('4000', () => {
+app.listen(PORT, () => {
   console.log('Server running...');
 });
