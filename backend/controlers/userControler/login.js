@@ -1,5 +1,5 @@
 const UserModel = require('../../model/userModel');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { httpStatus } = require('../../config/constants');
 const n = require('../../utils/jwt');
 
