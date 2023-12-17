@@ -7,12 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Cart from './Components/Cart/Cart';
 import { useState } from 'react';
 
-if (process.env.NODE_ENV === 'development') {
-  axios.defaults.baseURL = 'http://localhost:4000/';
-} else {
-  axios.defaults.baseURL =
-    'https://furniture-store-zdenko-markovics-projects.vercel.app/';
-}
+axios.defaults.baseURL =
+  'https://furniture-store-zdenko-markovics-projects.vercel.app/';
 
 function App() {
   const [cartDisplay, setCartDisplay] = useState(false);
