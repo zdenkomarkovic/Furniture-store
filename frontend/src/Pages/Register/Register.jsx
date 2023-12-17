@@ -1,7 +1,7 @@
 import React from 'react';
 import './Register.scss';
 import { useState } from 'react';
-import UserService from '../../services/userService';
+import UserService from '../../services/UserService';
 import Header from '../../Components/Header/Header';
 import { toast } from 'react-toastify';
 
