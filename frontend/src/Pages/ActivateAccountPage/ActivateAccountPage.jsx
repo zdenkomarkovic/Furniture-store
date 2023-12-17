@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { routes } from '../../router/routes';
-import UserService from '../../services/userService';
+import UserService from '../../services/UserService';
 import './ActivateAccountPage.scss';
 
 const ActivateAccountPage = () => {
