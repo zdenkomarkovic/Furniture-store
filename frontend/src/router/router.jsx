@@ -7,7 +7,7 @@ import { appChildren } from './appChildren';
 import { routes } from './routes';
 import Dashboard from '../Pages/Dashboard/Dashboard';
 import { dashboardChildren } from './dashboardChildren';
-import { AuthUtils } from '../utils/authUtils';
+import AuthGuarding from '../utils/AuthGuarding';
 
 export const router = createBrowserRouter([
   {
@@ -23,19 +23,12 @@ export const router = createBrowserRouter([
       {
         path: routes.DASHBOARD.path,
         element: (
-          <DashboardProtect>
+          <AuthGuarding>
             <Dashboard />
-          </DashboardProtect>
+          </AuthGuarding>
         ),
         children: dashboardChildren,
       },
     ],
   },
 ]);
-
-function DashboardProtect({ children }) {
-  if (AuthUtils.isLogged()) {
-    return children;
-  }
-  return <Navigate to={routes.LOGIN.path} />;
-}
