@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
 import { LS_TOKEN } from '../../config/config';
 import { routes } from '../../router/routes';
-import UserService from '../../services/userService';
+import UserService from '../../services/UserService';
 import { setUser } from '../../store/UserSlice';
 import './Login.scss';
 import { toast, ToastContainer } from 'react-toastify';
