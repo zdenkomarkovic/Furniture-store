@@ -32,7 +32,7 @@ const Contact = () => {
               Mail:{' '}
               <a href='mailto:audiophile@gmail.com'>audiophile@gmail.com</a>
             </span>
-            <p>Adress: Madame Tussauds, 10178 Berlin, Germany</p>
+            <p>Adress: Madame Tussaudss, 10178 Berlin, Germany</p>
           </div>
           <form action='' className='contact-form' onSubmit={handleSubmit}>
             <input
