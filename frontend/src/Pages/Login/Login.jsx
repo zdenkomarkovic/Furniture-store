@@ -25,7 +25,6 @@ const Login = () => {
       .then(res => {
         if (res.status === 201) {
         } else {
-          console.log(res.data);
           dispatch(setUser(res.data.user));
           localStorage.setItem(LS_TOKEN, res.data.token);
           toast.success('You are logged successfully');

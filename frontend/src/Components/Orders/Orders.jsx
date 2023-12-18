@@ -8,10 +8,13 @@ const Orders = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const { orders } = useSelector(state => state.orderStore);
+  console.log(orders);
+
   useEffect(() => {
     OrderService.allOrders()
       .then(res => {
         dispatch(storeAllOrders(res.data));
+
         setIsLoading(false);
       })
       .catch(err => {
@@ -23,14 +26,44 @@ const Orders = () => {
     <div className='orders-wrapper'>
       <div className='orders'>
         <h3>Orders</h3>
-        {orders?.map((order, i) => {
-          return (
-            <div key={i} className='order-details'>
-              <p>Order from: {order.name}</p>
-              <p>Email: {order.email}</p>
-            </div>
-          );
-        })}
+        <table>
+          <thead>
+            <tr>
+              <th>n</th>
+              <th>Order from: </th>
+              <th>Email: </th>
+              <th>Phone: </th>
+              <th>Address:</th>
+              <th>Total Price:</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders?.map((order, i) => {
+              return (
+                <tr key={i} className='order-details'>
+                  <td>{i + 1}</td>
+                  <td>{order.name}</td>
+                  <td>{order.email}</td>
+                  <td>{order.phone}</td>
+                  <td>
+                    {order.address}, {order.city}, {order.country}
+                  </td>
+                  <td>{order.totalPrice}</td>
+                  <td>
+                    <button>Check</button>
+                  </td>
+                  <td>
+                    <button>Products</button>
+                  </td>
+
+                  <p></p>
+                  <p></p>
+                  <p></p>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -5,7 +5,13 @@ import * as Yup from 'yup';
 import { FileParser } from '../../utils/FileParser';
 import ProductService from '../../services/ProductService';
 
-const VALID_TYPE = ['image/jpg', 'image/png', 'image/jpeg', 'image/svg'];
+const VALID_TYPE = [
+  'image/jpg',
+  'image/png',
+  'image/jpeg',
+  'image/svg',
+  'image/webp',
+];
 const KB = 1024;
 const MB = KB * 1024;
 

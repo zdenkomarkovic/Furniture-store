@@ -18,7 +18,7 @@ const register = async (req, res) => {
       .save()
       .then(user => {
         let verifyLink =
-          'https://furniture-store-r4p8.vercel.app/activate/' + user._id;
+          'https://furniture-store-r4p8.vercel.app//activate/' + user._id;
         sendActivateLink(email, verifyLink)
           .then(data => {
             res.send({ msg: 'Registration successful' });
