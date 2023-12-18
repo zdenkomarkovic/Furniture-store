@@ -5,9 +5,9 @@ import Header from '../../Components/Header/Header';
 import { LS_TOKEN } from '../../config/config';
 import { routes } from '../../router/routes';
 import UserService from '../../services/UserService';
-import { setUser } from '../../store/UserSlice';
+import { setUser } from '../../store/userSlice';
 import './Login.scss';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const dispatch = useDispatch();
