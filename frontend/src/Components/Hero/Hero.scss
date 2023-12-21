@@ -1,6 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/responsive';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/responsive";
+@import "../../styles/mixins";
 
 .hero-wrapper {
   background-color: $color-primary;
@@ -10,10 +10,32 @@
     align-items: center;
     position: relative;
     padding-block: 100px;
-    align-items: center;
+    @include devices(mobile) {
+    }
+
+    @include devices(tablet) {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
     .text {
       color: $white;
-
+      padding-bottom: 100px;
+      @include devices(mobile) {
+        margin-top: 60px;
+        margin-bottom: 0;
+        position: absolute;
+        width: 70%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
+      }
+      @include devices(tablet) {
+        margin-top: 60px;
+        margin-bottom: 0;
+      }
       .hero-new-product {
         font-size: 14px;
         font-weight: 400;
@@ -24,9 +46,15 @@
       .hero-description {
         opacity: 0.75;
         max-width: 350px;
+        @include devices(mobile) {
+          margin: 0 auto;
+        }
+        @include devices(tablet) {
+          margin: 0 auto;
+        }
       }
       button {
-        @include btn();
+        @include btn($color-accent, $color-accent-hover, none);
         a {
           color: $white;
         }
@@ -36,7 +64,7 @@
       .hero-image {
         height: auto;
         width: 800px;
-        object-fit: contain;
+        object-fit: cover;
         border-radius: 50px;
       }
     }

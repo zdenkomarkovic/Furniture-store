@@ -1,14 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
-import App from './App.jsx';
+import { RouterProvider } from 'react-router-dom';
 import './index.scss';
-import Home from './Pages/Home/Home.jsx';
 import { router } from './router/router.jsx';
 import { Provider } from 'react-redux';
 import { store } from './store/store.js';

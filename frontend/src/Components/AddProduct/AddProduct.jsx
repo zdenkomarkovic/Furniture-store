@@ -1,9 +1,9 @@
-import React from 'react';
 import './AddProduct.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { FileParser } from '../../utils/FileParser';
 import ProductService from '../../services/ProductService';
+import { toast } from 'react-toastify';
 
 const VALID_TYPE = [
   'image/jpg',
