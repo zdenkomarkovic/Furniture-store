@@ -10,6 +10,10 @@
     justify-items: center;
     margin-top: 100px;
     margin-bottom: 40px;
+    @include devices(mobile) {
+      display: flex;
+      flex-direction: column;
+    }
 
     .card {
       margin-bottom: 60px;
