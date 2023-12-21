@@ -1,18 +1,15 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-@import '../../styles/responsive';
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/responsive";
 
 .products-wrapper {
-  display: flow-root;
   .products {
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    align-items: center;
     justify-items: center;
     margin-top: 100px;
     margin-bottom: 40px;
-    margin-inline: auto;
 
     .card {
       margin-bottom: 60px;
