@@ -4,14 +4,15 @@
 
 .hero-wrapper {
   background-color: $color-primary;
+  @include devices(mobile) {
+    padding-block: 60px;
+  }
   .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     padding-block: 100px;
-    @include devices(mobile) {
-    }
 
     @include devices(tablet) {
       flex-direction: column;

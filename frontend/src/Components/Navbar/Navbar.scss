@@ -12,9 +12,6 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
 
-    @include devices(mobile) {
-      padding-block: 32px;
-    }
     .nav-menu {
       @include devices(desktop) {
         display: none;
