@@ -85,9 +85,9 @@
         p {
           color: $white;
           text-transform: uppercase;
-          letter-spacing: 2px;
-          font-weight: 700;
-          font-size: 13px;
+          letter-spacing: 1px;
+          font-weight: 500;
+          font-size: 10px;
           transition: $transition;
 
           &:hover {
@@ -95,6 +95,17 @@
           }
           .icon {
             margin-left: 5px;
+          }
+        }
+        a {
+          color: $white;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          font-weight: 500;
+          font-size: 10px;
+          transition: $transition;
+          &:hover {
+            color: $color-accent;
           }
         }
       }
