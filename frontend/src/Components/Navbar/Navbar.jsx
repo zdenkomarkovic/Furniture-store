@@ -20,16 +20,16 @@ const Navbar = ({ setCartDisplay }) => {
 
   const toggleCart = () => {
     setCartDisplay((prev) => !prev);
+  };
+  const toogleMenu = () => {
+    setToggleMenu((prev) => !prev);
     setDropdownMenu(true);
   };
 
   return (
     <div className="navbar-wrapper">
       <div className="navbar container">
-        <div
-          className="nav-menu"
-          onClick={() => setToggleMenu((prev) => !prev)}
-        >
+        <div className="nav-menu" onClick={toogleMenu}>
           {toggleMenu ? (
             <AiOutlineClose className="menu-icon" />
           ) : (
