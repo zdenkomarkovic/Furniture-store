@@ -1,5 +1,6 @@
 @import "../../styles/variables";
 @import "../../styles/responsive";
+@import "../../styles/mixins";
 
 .navbar-wrapper {
   background-color: $color-primary;
@@ -31,11 +32,11 @@
       left: 0;
       right: 0;
       background-color: $color-primary;
-      z-index: 99;
+      z-index: 9;
       border-radius: 8px;
       transition: $transition;
       display: flex;
-      gap: 30px;
+      gap: 20px;
       &.hide {
         transform: translateX(-150%);
       }
@@ -68,10 +69,33 @@
         }
       }
       .log-menu {
-        padding: 30px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        padding: 20px 20px;
+
+        position: relative;
+
+        ul {
+          position: absolute;
+          top: 40px;
+        }
+        .hide {
+          display: none;
+        }
+
+        p {
+          color: $white;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          font-weight: 700;
+          font-size: 13px;
+          transition: $transition;
+
+          &:hover {
+            color: $color-accent;
+          }
+          .icon {
+            margin-left: 5px;
+          }
+        }
       }
 
       a {
@@ -127,6 +151,35 @@
       .cart-qty {
         color: $white;
         font-size: 13px;
+      }
+    }
+
+    .log {
+      position: relative;
+      justify-content: center;
+      ul {
+        position: absolute;
+        top: 25px;
+        z-index: 99;
+      }
+      .hide {
+        display: none;
+      }
+
+      p {
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        margin: 0;
+        &:hover {
+          color: $color-accent;
+        }
+        .icon {
+          margin-left: 5px;
+        }
       }
     }
   }

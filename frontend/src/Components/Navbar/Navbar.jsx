@@ -9,12 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/userSlice";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import { SlArrowDown } from "react-icons/sl";
 
 const Navbar = ({ setCartDisplay }) => {
   const { user } = useSelector((store) => store.userStore);
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cartStore);
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [dropdownMenu, setDropdownMenu] = useState(true);
 
   const toggleCart = () => {
     setCartDisplay((prev) => !prev);
@@ -45,10 +47,8 @@ const Navbar = ({ setCartDisplay }) => {
               );
             })}
           </ul>
-          <div className="log-menu">
-            <button>
-              {user.hasOwnProperty("email") ? user.name : "My Account"}
-            </button>
+          {/* <div className="log log-menu">
+            <p>{user.hasOwnProperty("email") ? user.name : "My Account"}</p>
 
             <Link to={routes.REGISTER.path}>Register</Link>
             {user.hasOwnProperty("email") ? (
@@ -59,6 +59,42 @@ const Navbar = ({ setCartDisplay }) => {
             ) : (
               <Link to={routes.LOGIN.path}>Login</Link>
             )}
+          </div> */}
+          <div className=" log-menu" onMouseLeave={() => setDropdownMenu(true)}>
+            <p onMouseOver={() => setDropdownMenu(false)}>
+              {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}
+              <SlArrowDown className="icon" />
+            </p>
+            <ul className={`${dropdownMenu && "hide"}`}>
+              <li>
+                <Link
+                  onClick={() => setToggleMenu(false)}
+                  to={routes.REGISTER.path}
+                >
+                  Register
+                </Link>
+              </li>
+              {user.hasOwnProperty("email") ? (
+                <li>
+                  <Link
+                    onClick={() => setToggleMenu(false)}
+                    to={routes.DASHBOARD.path}
+                  >
+                    {routes.DASHBOARD.name}
+                  </Link>
+                  <p onClick={() => dispatch(logoutUser())}>Logout</p>
+                </li>
+              ) : (
+                <li>
+                  <Link
+                    onClick={() => setToggleMenu(false)}
+                    to={routes.LOGIN.path}
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
           </div>
         </div>
         <div className="nav-logo">
@@ -87,20 +123,30 @@ const Navbar = ({ setCartDisplay }) => {
             <span className="cart-qty">({cart.length})</span>
           ) : null}
         </div>
-        <div className="log nav-links">
-          <button>
-            {user.hasOwnProperty("email") ? user.name : "My Account"}
-          </button>
 
-          <Link to={routes.REGISTER.path}>Register</Link>
-          {user.hasOwnProperty("email") ? (
-            <div>
-              <Link to={routes.DASHBOARD.path}>{routes.DASHBOARD.name}</Link>
-              <button onClick={() => dispatch(logoutUser())}>Logout</button>
-            </div>
-          ) : (
-            <Link to={routes.LOGIN.path}>Login</Link>
-          )}
+        <div
+          className="log nav-links"
+          onMouseLeave={() => setDropdownMenu(true)}
+        >
+          <p onMouseOver={() => setDropdownMenu(false)}>
+            {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}
+            <SlArrowDown className="icon" />
+          </p>
+          <ul className={`${dropdownMenu && "hide"}`}>
+            <li>
+              <Link to={routes.REGISTER.path}>Register</Link>
+            </li>
+            {user.hasOwnProperty("email") ? (
+              <li>
+                <Link to={routes.DASHBOARD.path}>{routes.DASHBOARD.name}</Link>
+                <p onClick={() => dispatch(logoutUser())}>Logout</p>
+              </li>
+            ) : (
+              <li>
+                <Link to={routes.LOGIN.path}>Login</Link>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     </div>
