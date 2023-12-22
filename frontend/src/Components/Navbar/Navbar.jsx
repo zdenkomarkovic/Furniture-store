@@ -20,6 +20,7 @@ const Navbar = ({ setCartDisplay }) => {
 
   const toggleCart = () => {
     setCartDisplay((prev) => !prev);
+    setDropdownMenu(true);
   };
 
   return (
@@ -60,8 +61,8 @@ const Navbar = ({ setCartDisplay }) => {
               <Link to={routes.LOGIN.path}>Login</Link>
             )}
           </div> */}
-          <div className=" log-menu" onMouseLeave={() => setDropdownMenu(true)}>
-            <p onMouseOver={() => setDropdownMenu(false)}>
+          <div className=" log-menu">
+            <p onClick={() => setDropdownMenu((prev) => !prev)}>
               {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}
               <SlArrowDown className="icon" />
             </p>
