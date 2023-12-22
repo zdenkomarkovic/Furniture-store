@@ -5,7 +5,7 @@
 .hero-wrapper {
   background-color: $color-primary;
   @include devices(mobile) {
-    padding-block: 60px;
+    padding-block: 80px;
   }
   .hero {
     display: flex;
@@ -48,7 +48,8 @@
         opacity: 0.75;
         max-width: 350px;
         @include devices(mobile) {
-          margin: 0 auto;
+          margin-inline: auto;
+          margin-bottom: 40px;
         }
         @include devices(tablet) {
           margin: 0 auto;
