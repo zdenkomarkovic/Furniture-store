@@ -11,9 +11,10 @@ module.exports = {
   CORS_OPTIONS: {
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true)
+        callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'))
+        callback(new Error("Not allowed by CORS"));
       }
-    }
-  }
+    },
+  },
+};
