@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const app = express();
 
-const { DB_URL, PORT, CORS_OPTIONS } = require("./config/configDb");
+const { DB_URL, PORT } = require("./config/configDb");
 
-app.use(cors(CORS_OPTIONS));
+app.use(cors());
 
 mongoose
   .connect(DB_URL)
