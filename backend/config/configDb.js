@@ -1,5 +1,5 @@
-require('dotenv').config();
-const whiteList = ['http://localhost:63342', 'http://localhost:5501'];
+require("dotenv").config();
+const whiteList = ["http://localhost:63342", "http://localhost:5173"];
 
 module.exports = {
   JWT_KEY: process.env.JWT_KEY,
@@ -10,7 +10,7 @@ module.exports = {
       if (whiteList.includes(origin)) {
         cb(null, true);
       } else {
-        cb(new Error('Not allowed by CORS'));
+        cb(new Error("Not allowed by CORS"));
       }
       cb(null, true);
     },
