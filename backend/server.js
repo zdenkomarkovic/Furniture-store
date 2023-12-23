@@ -5,7 +5,7 @@ const app = express();
 
 const { DB_URL, PORT } = require("./config/configDb");
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 mongoose
   .connect(DB_URL)
