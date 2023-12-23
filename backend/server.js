@@ -1,22 +1,22 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 
-const { DB_URL, PORT } = require('./config/configDb');
+const { DB_URL, PORT } = require("./config/configDb");
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:5173" }));
 
 mongoose
   .connect(DB_URL)
-  .then(() => console.log('MongoDb connected'))
-  .catch(err => console.log(err));
+  .then(() => console.log("MongoDb connected"))
+  .catch((err) => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: '10mb' }));
+app.use(express.json({ limit: "10mb" }));
 
-app.use('/', require('./routes'));
+app.use("/", require("./routes"));
 
 app.listen(PORT, () => {
-  console.log('Server running...');
+  console.log("Server running...");
 });

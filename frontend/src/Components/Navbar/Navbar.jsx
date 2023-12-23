@@ -48,19 +48,6 @@ const Navbar = ({ setCartDisplay }) => {
               );
             })}
           </ul>
-          {/* <div className="log log-menu">
-            <p>{user.hasOwnProperty("email") ? user.name : "My Account"}</p>
-
-            <Link to={routes.REGISTER.path}>Register</Link>
-            {user.hasOwnProperty("email") ? (
-              <div>
-                <Link to={routes.DASHBOARD.path}>{routes.DASHBOARD.name}</Link>
-                <button onClick={() => dispatch(logoutUser())}>Logout</button>
-              </div>
-            ) : (
-              <Link to={routes.LOGIN.path}>Login</Link>
-            )}
-          </div> */}
           <div className=" log-menu">
             <p onClick={() => setDropdownMenu((prev) => !prev)}>
               {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}

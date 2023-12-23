@@ -1,0 +1,125 @@
+@import "../../styles/variables";
+@import "../../styles/responsive";
+
+.footer-wrapper {
+  background-color: $color-primary;
+  color: $white;
+  padding: 50px 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    background-color: $color-accent;
+    height: 4px;
+    width: 100px;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    @include devices(mobile) {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    @include devices(tablet) {
+      left: 5%;
+    }
+  }
+
+  .footer {
+    display: flex;
+    @include devices(mobile) {
+      flex-direction: column;
+      text-align: center;
+    }
+    @include devices(tablet) {
+      flex-direction: column;
+    }
+
+    .text,
+    .links {
+      flex: 0 0 50%;
+      @include devices(mobile) {
+        flex: 0 0 100%;
+      }
+    }
+
+    .text {
+      @include devices(mobile) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      p {
+        opacity: 0.5;
+      }
+
+      .footer-text {
+        padding: 36px 0 56px 0;
+        @include devices(mobile) {
+          padding: 36px 0;
+        }
+      }
+
+      .copyright {
+        transition: $transition;
+        &:hover {
+          opacity: 1;
+        }
+        a {
+          color: $color-accent;
+        }
+      }
+    }
+
+    .links {
+      .nav-links {
+        @include devices(mobile) {
+          display: none;
+        }
+        @include devices(tablet) {
+          display: none;
+        }
+        ul {
+          display: flex;
+          justify-content: flex-end;
+          gap: 35px;
+
+          a {
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: $transition;
+
+            &:hover {
+              color: $color-accent;
+            }
+          }
+        }
+      }
+
+      .socials {
+        display: flex;
+        justify-content: flex-end;
+        gap: 16px;
+        margin-top: 100px;
+        @include devices(mobile) {
+          justify-content: center;
+          margin-top: 50px;
+        }
+        @include devices(tablet) {
+          margin-top: 50px;
+        }
+
+        img {
+          transition: $transition;
+          cursor: pointer;
+          &:hover {
+            scale: 1.2;
+          }
+        }
+      }
+    }
+  }
+}
