@@ -1,6 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-@import '../../styles/responsive';
+@import "../../styles/variables";
+@import "../../styles/mixins";
+@import "../../styles/responsive";
 
 .single {
   margin-top: 100px;
@@ -26,6 +26,7 @@
     display: flex;
     align-items: center;
     margin-top: 50px;
+    gap: 20px;
     @include devices(mobile) {
       margin-top: 20px;
       flex-direction: column;

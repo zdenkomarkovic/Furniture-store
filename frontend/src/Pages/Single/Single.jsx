@@ -120,7 +120,7 @@ const Single = () => {
             </div>
           </div>
         </motion.div>
-        <motion.div
+        {/* <motion.div
           whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
           transition={{ duration: 0.5 }}
           className="gallery"
@@ -132,7 +132,7 @@ const Single = () => {
           <div className="one-img">
             <img src="" alt="product-image" />
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
   );
