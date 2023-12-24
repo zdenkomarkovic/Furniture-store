@@ -10,7 +10,7 @@ import ScrollToTopButton from "./Components/ScrollToTop/ScrollToTopButton";
 import Footer from "./Components/Footer/Footer";
 
 if (process.env.NODE_ENV === "development") {
-  axios.defaults.baseURL = "http://localhost:4000";
+  axios.defaults.baseURL = "http://localhost:3000";
 } else {
   axios.defaults.baseURL =
     "https://furniture-store-zdenko-markovics-projects.vercel.app/";
