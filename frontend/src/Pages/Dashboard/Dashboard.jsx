@@ -6,10 +6,12 @@ import "./Dashboard.scss";
 import logo from "./../../assets/logo.jpg";
 import { SlArrowDown } from "react-icons/sl";
 import { logoutUser } from "../../store/userSlice";
-import Orders from "../../Components/Orders/Orders";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Dashboard = () => {
   const [dropdownMenu, setDropdownMenu] = useState(true);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const { user } = useSelector((state) => state.userStore);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,10 +20,33 @@ const Dashboard = () => {
     dispatch(logoutUser());
     navigate(routes.LOGIN.path);
   };
+  const toogleMenu = () => {
+    setToggleMenu((prev) => !prev);
+  };
   return (
     <section className="dashboard-wrapper">
       <div className="header">
         <div className="container dash-wrapper">
+          <div className="nav-menu" onClick={toogleMenu}>
+            {toggleMenu ? (
+              <AiOutlineClose className="menu-icon" />
+            ) : (
+              <RxHamburgerMenu className="menu-icon" />
+            )}
+          </div>
+          <div className={`nav-menu-links ${toggleMenu ? "show" : "hide"}`}>
+            <ul>
+              {dashboardSidebarItem.map((li, i) => {
+                return (
+                  <li key={i}>
+                    <NavLink onClick={() => setToggleMenu(false)} to={li.path}>
+                      {li.name}
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           <div className="nav-logo">
             <Link to={"/"}>
               <img src={logo} alt="logo-image" />

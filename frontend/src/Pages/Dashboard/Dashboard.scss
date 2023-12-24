@@ -7,16 +7,86 @@
   .dash-wrapper {
     display: flex;
     justify-content: space-between;
+    .nav-menu {
+      @include devices(desktop) {
+        display: none;
+      }
+      .menu-icon {
+        color: white;
+        margin-top: 15px;
+        width: 20px;
+        height: auto;
+        cursor: pointer;
+      }
+    }
+    .nav-menu-links {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      right: 0;
+      background-color: $color-primary;
+      z-index: 9;
+      border-radius: 8px;
+      transition: $transition;
+      display: flex;
+      gap: 20px;
+      &.hide {
+        transform: translateX(-150%);
+      }
+      &.show {
+        transform: translateX(0);
+      }
+      @include devices(desktop) {
+        display: none;
+      }
+      ul {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        li {
+          a {
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 13px;
+            transition: $transition;
+            &:hover {
+              color: $color-accent;
+            }
+          }
+          a.active {
+            color: $color-accent;
+          }
+        }
+      }
+
+      a {
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        &:hover {
+          color: $color-accent;
+        }
+      }
+      a.active {
+        color: $color-accent;
+      }
+    }
     .nav-logo {
       width: 170px;
     }
     .nav-links {
-      @include devices(mobile) {
-        display: none;
-      }
-      @include devices(tablet) {
-        display: none;
-      }
+      // @include devices(mobile) {
+      //   display: none;
+      // }
+      // @include devices(tablet) {
+      //   display: none;
+      // }
       display: flex;
       gap: 35px;
       a {
@@ -69,13 +139,19 @@
 }
 .wrapper {
   display: flex;
+
   aside {
-    width: 6%;
     height: 100vh;
     background-color: $color-primary;
-    padding-left: 30px;
+    padding-inline: 30px;
     padding-top: 30px;
     font-size: 17px;
+    @include devices(tablet) {
+      display: none;
+    }
+    @include devices(mobile) {
+      display: none;
+    }
 
     li {
       padding-block: 3px;
