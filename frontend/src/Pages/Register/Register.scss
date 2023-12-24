@@ -1,12 +1,53 @@
-@import '../../styles/variables';
-@import '../../styles/responsive';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/responsive";
+@import "../../styles/mixins";
 
-.form-input {
-  width: 30%;
-  margin-inline: auto;
-  form {
-    display: flex;
-    flex-direction: column;
+.register-wrapper {
+  padding-block: 70px;
+  background-color: $color-light-grey;
+  @include devices(mobile) {
+    padding-block: 30px;
+  }
+
+  @include devices(tablet) {
+    padding-top: 40px;
+  }
+
+  .form-input {
+    width: 500px;
+    background-color: $white;
+    border-radius: 8px;
+    margin-inline: auto;
+    padding: 50px;
+    @include devices(mobile) {
+      width: 90%;
+    }
+
+    @include devices(tablet) {
+      min-width: 60%;
+    }
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 18px;
+      font-weight: 500;
+      input {
+        @include input;
+        font-size: 18px;
+        &::placeholder {
+          font-size: 18px;
+        }
+
+        &.error {
+          outline: 1px solid $color-error;
+        }
+      }
+      button {
+        @include btn;
+        font-size: 18px;
+      }
+    }
   }
 }
