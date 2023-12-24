@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "./../../assets/logo.jpg";
 import { motion } from "framer-motion";

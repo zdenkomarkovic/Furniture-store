@@ -102,7 +102,7 @@ const Single = () => {
         >
           <div className="features">
             <h3>FEATURES</h3>
-            <p>{product.features}</p>
+            <p>{product?.features}</p>
           </div>
           <div className="includes">
             <h3>Dimensions</h3>

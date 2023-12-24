@@ -1,22 +1,67 @@
-@import '../../styles/variables';
-@import '../../styles/responsive';
-@import '../../styles/typography';
+@import "../../styles/variables";
+@import "../../styles/responsive";
+@import "../../styles/typography";
 
 .header {
   background-color: $color-primary;
   .dash-wrapper {
+    display: flex;
     justify-content: space-between;
-
-    h3 {
-      color: white;
+    .nav-logo {
+      width: 170px;
     }
-    ul {
-      li {
-        button {
-          color: white;
+    .nav-links {
+      @include devices(mobile) {
+        display: none;
+      }
+      @include devices(tablet) {
+        display: none;
+      }
+      display: flex;
+      gap: 35px;
+      a {
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        &:hover {
+          scale: 1.2;
+          color: $color-accent;
         }
-        a {
-          color: white;
+        &.active {
+          color: $color-accent;
+          scale: 1.2;
+        }
+      }
+    }
+    .log {
+      position: relative;
+      justify-content: center;
+      ul {
+        position: absolute;
+        top: 25px;
+        z-index: 99;
+      }
+      .hide {
+        display: none;
+      }
+
+      p {
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        margin: 0;
+        cursor: pointer;
+        &:hover {
+          color: $color-accent;
+        }
+        .icon {
+          margin-left: 5px;
         }
       }
     }
@@ -25,13 +70,24 @@
 .wrapper {
   display: flex;
   aside {
-    width: 8%;
+    width: 6%;
     height: 100vh;
     background-color: $color-primary;
-    padding-left: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+    font-size: 17px;
 
-    a {
-      color: white;
+    li {
+      padding-block: 3px;
+      a {
+        color: white;
+        &:hover {
+          color: $color-accent;
+        }
+      }
+      a.active {
+        color: $color-accent;
+      }
     }
   }
   .content-wrapper {

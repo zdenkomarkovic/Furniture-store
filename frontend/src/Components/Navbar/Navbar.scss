@@ -183,6 +183,7 @@
         font-size: 13px;
         transition: $transition;
         margin: 0;
+        cursor: pointer;
         &:hover {
           color: $color-accent;
         }

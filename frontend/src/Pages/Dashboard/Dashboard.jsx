@@ -1,41 +1,52 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link, NavLink, Outlet } from 'react-router-dom';
-import { dashboardSidebarItem, routes } from '../../router/routes';
-import './Dashboard.scss';
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { dashboardSidebarItem, routes } from "../../router/routes";
+import "./Dashboard.scss";
+import logo from "./../../assets/logo.jpg";
+import { SlArrowDown } from "react-icons/sl";
+import { logoutUser } from "../../store/userSlice";
+import Orders from "../../Components/Orders/Orders";
 
 const Dashboard = () => {
-  const { user } = useSelector(state => state.userStore);
-  return (
-    <section className='dashboard-wrapper'>
-      <div className='header'>
-        <div className='container dash-wrapper'>
-          <div>
-            <h3>Furniture store</h3>
-          </div>
-          <div>
-            <ul className='nav'>
-              <li className='dropdown'>
-                <button>{user.name}</button>
+  const [dropdownMenu, setDropdownMenu] = useState(true);
+  const { user } = useSelector((state) => state.userStore);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-                <ul className='dropdown-menu'>
-                  <li>
-                    <Link className='dropdown-item'>1</Link>
-                  </li>
-                  <li>
-                    <Link className='dropdown-item'>2</Link>
-                  </li>
-                </ul>
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    navigate(routes.LOGIN.path);
+  };
+  return (
+    <section className="dashboard-wrapper">
+      <div className="header">
+        <div className="container dash-wrapper">
+          <div className="nav-logo">
+            <Link to={"/"}>
+              <img src={logo} alt="logo-image" />
+            </Link>
+          </div>
+          <div
+            className="log nav-links"
+            onMouseLeave={() => setDropdownMenu(true)}
+          >
+            <p onMouseOver={() => setDropdownMenu(false)}>
+              {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}
+              <SlArrowDown className="icon" />
+            </p>
+            <ul className={`${dropdownMenu && "hide"}`}>
+              <li>
+                <p onClick={handleLogout}>Logout</p>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <section className='container-fluid'>
-        <div className=' wrapper'>
+      <section className="container-fluid">
+        <div className=" wrapper">
           <aside>
-            <ul className='list-group'>
-              <NavLink to={routes.HOME.path}>{routes.HOME.name}</NavLink>
+            <ul className="list-group">
               {dashboardSidebarItem.map((item, i) => {
                 return (
                   <li key={i}>
@@ -47,7 +58,7 @@ const Dashboard = () => {
               })}
             </ul>
           </aside>
-          <div className='content-wrapper'>
+          <div className="content-wrapper">
             <Outlet />
           </div>
         </div>

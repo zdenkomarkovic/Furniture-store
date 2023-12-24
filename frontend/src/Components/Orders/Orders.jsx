@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import OrderService from '../../services/OrderService';
-import { storeAllOrders } from '../../store/orderSlice';
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import OrderService from "../../services/OrderService";
+import { storeAllOrders } from "../../store/orderSlice";
 
 const Orders = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const { orders } = useSelector(state => state.orderStore);
+  const { orders } = useSelector((state) => state.orderStore);
   console.log(orders);
 
   useEffect(() => {
     OrderService.allOrders()
-      .then(res => {
+      .then((res) => {
         dispatch(storeAllOrders(res.data));
 
         setIsLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
         setIsLoading(false);
       });
   });
   return (
-    <div className='orders-wrapper'>
-      <div className='orders'>
+    <div className="orders-wrapper">
+      <div className="orders">
         <h3>Orders</h3>
         <table>
           <thead>
@@ -40,7 +40,7 @@ const Orders = () => {
           <tbody>
             {orders?.map((order, i) => {
               return (
-                <tr key={i} className='order-details'>
+                <tr key={i} className="order-details">
                   <td>{i + 1}</td>
                   <td>{order.name}</td>
                   <td>{order.email}</td>
@@ -53,7 +53,10 @@ const Orders = () => {
                     <button>Check</button>
                   </td>
                   <td>
-                    <button>Products</button>
+                    <button>Print</button>
+                  </td>
+                  <td>
+                    <button>See products</button>
                   </td>
 
                   <p></p>
