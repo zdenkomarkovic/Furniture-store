@@ -49,6 +49,9 @@
         .product-btn {
           @include btn($color-accent, $color-accent-hover, $white, none);
           margin-top: 0;
+          a {
+            color: white;
+          }
         }
       }
       &.skeleton {

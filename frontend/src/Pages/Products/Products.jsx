@@ -45,7 +45,9 @@ const Products = () => {
                 key={i}
               >
                 <div className="image">
-                  <img src={product.thumbnail} alt={product.name} />
+                  <Link to={`/single/${product._id}`}>
+                    <img src={product.thumbnail} alt={product.name} />{" "}
+                  </Link>
                 </div>
                 <div className="text">
                   <h6>{product.title}</h6>
