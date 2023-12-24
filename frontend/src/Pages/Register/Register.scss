@@ -14,7 +14,7 @@
   }
 
   .form-input {
-    width: 500px;
+    width: 650px;
     background-color: $white;
     border-radius: 8px;
     margin-inline: auto;
@@ -25,6 +25,7 @@
 
     @include devices(tablet) {
       min-width: 60%;
+      max-width: 80%;
     }
     form {
       width: 100%;
