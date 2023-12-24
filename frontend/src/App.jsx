@@ -9,8 +9,12 @@ import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
 import ScrollToTopButton from "./Components/ScrollToTop/ScrollToTopButton";
 import Footer from "./Components/Footer/Footer";
 
-axios.defaults.baseURL =
-  "https://furniture-store-zdenko-markovics-projects.vercel.app/";
+if (process.env.NODE_ENV === "development") {
+  axios.defaults.baseURL = "http://localhost:4000";
+} else {
+  axios.defaults.baseURL =
+    "https://furniture-store-zdenko-markovics-projects.vercel.app/";
+}
 
 function App() {
   const [cartDisplay, setCartDisplay] = useState(false);
