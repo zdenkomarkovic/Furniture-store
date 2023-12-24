@@ -13,7 +13,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json({ limit: "50mb" }));
+app.use(express.json());
 
 // app.get("/", (req, res) => {
 //   res.send(process.env);
