@@ -50,8 +50,10 @@ const Products = () => {
                   </Link>
                 </div>
                 <div className="text">
-                  <h6>{product.title}</h6>
-                  <p>$ {product.price.toLocaleString()}</p>
+                  <div className="title">
+                    <h6>{product.title}</h6>
+                    <p>$ {product.price.toLocaleString()}</p>
+                  </div>
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     transition={{

@@ -13,6 +13,7 @@
     @include devices(mobile) {
       display: flex;
       flex-direction: column;
+      margin-top: 15px;
     }
 
     .card {
@@ -20,6 +21,7 @@
       width: 350px;
       @include devices(mobile) {
         width: 100%;
+        margin-bottom: -10px;
       }
       .image {
         overflow: hidden;
@@ -37,18 +39,29 @@
       }
       .text {
         text-align: center;
-        h6 {
-          color: $color-accent;
+        .title {
           @include devices(mobile) {
-            font-size: 18px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-block: 10px;
           }
-        }
-        p {
-          font-weight: 700;
+          h6 {
+            color: $color-accent;
+            @include devices(mobile) {
+              font-size: 18px;
+              margin: 0;
+            }
+          }
+          p {
+            font-weight: 700;
+            margin: 0;
+          }
         }
         .product-btn {
           @include btn($color-accent, $color-accent-hover, $white, none);
           margin-top: 0;
+          padding-block: 10px;
           a {
             color: white;
           }
