@@ -10,8 +10,25 @@
   input {
     @include input;
     font-size: 17px;
+    padding-block: 15px;
+    @include devices(tablet) {
+      font-size: 15px;
+      padding-inline: 5px;
+      padding-block: 10px;
+    }
+    @include devices(mobile) {
+      font-size: 13px;
+      padding-inline: 5px;
+      padding-block: 10px;
+    }
     &::placeholder {
       font-size: 17px;
+      @include devices(tablet) {
+        font-size: 15px;
+      }
+      @include devices(mobile) {
+        font-size: 13px;
+      }
     }
     &.error {
       outline: 1px solid $color-error;
@@ -19,6 +36,12 @@
   }
   button {
     @include btn;
+    @include devices(tablet) {
+      margin-top: 30px;
+    }
+    @include devices(mobile) {
+      margin-top: 20px;
+    }
   }
   label {
     @include label;
@@ -28,30 +51,64 @@
   }
   .top {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     margin-block: 50px;
     gap: 10px;
-
-    .wrapper {
-      display: flex;
+    @include devices(tablet) {
+      margin-block: 30px;
+    }
+    @include devices(mobile) {
       flex-direction: column;
+      margin-block: 20px;
     }
-    .title {
-      min-width: 500px;
-      @include devices(tablet) {
-        min-width: 300px;
+    .top-1 {
+      display: flex;
+      gap: 10px;
+      .wrapper {
+        display: flex;
+        flex-direction: column;
       }
-      @include devices(mobile) {
-        min-width: 200px;
+      .title {
+        min-width: 600px;
+        @include devices(tablet) {
+          min-width: 400px;
+          max-width: 600px;
+        }
+        @include devices(mobile) {
+          max-width: 300px;
+          min-width: 150px;
+        }
+      }
+      .number {
+        min-width: 95px;
+        @include devices(tablet) {
+          min-width: 80px;
+          max-width: 180px;
+        }
+        @include devices(mobile) {
+          max-width: 90px;
+          min-width: 40px;
+        }
       }
     }
-    .number {
-      min-width: 100px;
-      @include devices(tablet) {
-        min-width: 80px;
+    .top-2 {
+      display: flex;
+      gap: 10px;
+      justify-content: left;
+      .wrapper {
+        display: flex;
+        flex-direction: column;
       }
-      @include devices(mobile) {
-        min-width: 60px;
+      .number {
+        min-width: 95px;
+        @include devices(tablet) {
+          min-width: 80px;
+          max-width: 180px;
+        }
+        @include devices(mobile) {
+          max-width: 90px;
+          min-width: 40px;
+        }
       }
     }
   }
@@ -59,13 +116,38 @@
     display: flex;
     gap: 30px;
     margin-block: 50px;
+    @include devices(tablet) {
+      gap: 10px;
+      margin-block: 30px;
+    }
+
+    @include devices(mobile) {
+      gap: 10px;
+      margin-block: 20px;
+    }
 
     .wrapper {
+      width: 30%;
       display: flex;
       flex-direction: column;
+      input {
+        opacity: 0.5;
+      }
       select {
         @include input;
         font-size: 17px;
+        opacity: 0.5;
+        padding-block: 15px;
+        @include devices(tablet) {
+          font-size: 15px;
+          padding-inline: 5px;
+          padding-block: 10px;
+        }
+        @include devices(mobile) {
+          font-size: 13px;
+          padding-inline: 5px;
+          padding-block: 10px;
+        }
         &:hover,
         &:focus {
           outline: 1px solid $color-accent;
@@ -74,6 +156,15 @@
         option {
           @include input;
           font-size: 17px;
+          opacity: 0.5;
+          @include devices(tablet) {
+            font-size: 15px;
+            padding-inline: 5px;
+          }
+          @include devices(mobile) {
+            font-size: 13px;
+            padding-inline: 5px;
+          }
         }
       }
     }
@@ -81,7 +172,9 @@
   .bottom {
     display: flex;
     gap: 30px;
-    width: 100%;
+    @include devices(tablet) {
+      gap: 10px;
+    }
     @include devices(mobile) {
       flex-direction: column;
     }
@@ -89,12 +182,29 @@
     .wrapper {
       display: flex;
       flex-direction: column;
-
       textarea.description {
         @include input;
-        width: 400px;
+        width: 350px;
+        height: 150px;
+        @include devices(tablet) {
+          max-width: 200px;
+          min-width: 150px;
+          font-size: 15px;
+          height: 100px;
+        }
+        @include devices(mobile) {
+          width: 100%;
+          font-size: 13px;
+          height: 80px;
+        }
         &::placeholder {
           font-size: 17px;
+          @include devices(tablet) {
+            font-size: 15px;
+          }
+          @include devices(mobile) {
+            font-size: 13px;
+          }
         }
         &.error {
           outline: 1px solid $color-error;
@@ -106,9 +216,27 @@
       }
       textarea.features {
         @include input;
-        width: 600px;
+        width: 500px;
+        height: 150px;
+        @include devices(tablet) {
+          max-width: 300px;
+          min-width: 200px;
+          font-size: 15px;
+          height: 100px;
+        }
+        @include devices(mobile) {
+          width: 100%;
+          font-size: 13px;
+          height: 100px;
+        }
         &::placeholder {
           font-size: 17px;
+          @include devices(tablet) {
+            font-size: 15px;
+          }
+          @include devices(mobile) {
+            font-size: 13px;
+          }
         }
         &.error {
           outline: 1px solid $color-error;

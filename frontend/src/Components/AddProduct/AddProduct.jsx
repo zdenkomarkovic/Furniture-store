@@ -82,86 +82,90 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="add-product-wrapper">
+      <div className="add-product-wrapper container">
         <form action="" onSubmit={formik.handleSubmit}>
           <div className="top">
-            <div className="wrapper title">
-              <label className={showError("title") ? "error" : null}>
-                Title: <span>{showError("title")}</span>
-              </label>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title..."
-                onInput={formik.handleChange}
-                value={formik.values.title}
-                className={showError("title") ? "error" : null}
-              />
+            <div className="top-1">
+              <div className="wrapper title">
+                <label className={showError("title") ? "error" : null}>
+                  Title: <span>{showError("title")}</span>
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Title..."
+                  onInput={formik.handleChange}
+                  value={formik.values.title}
+                  className={showError("title") ? "error" : null}
+                />
+              </div>
+              <div className="wrapper number">
+                <label className={showError("price") ? "error" : null}>
+                  Price: <span>{showError("price")}</span>
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  placeholder="Price..."
+                  onInput={formik.handleChange}
+                  value={formik.values.price}
+                  className={showError("price") ? "error" : null}
+                />
+              </div>
             </div>
-            <div className="wrapper number">
-              <label className={showError("price") ? "error" : null}>
-                Price: <span>{showError("price")}</span>
-              </label>
-              <input
-                type="number"
-                name="price"
-                placeholder="Price..."
-                onInput={formik.handleChange}
-                value={formik.values.price}
-                className={showError("price") ? "error" : null}
-              />
-            </div>
-            <div className="wrapper number">
-              <label className={showError("stock") ? "error" : null}>
-                Stock: <span>{showError("stock")}</span>
-              </label>
-              <input
-                type="number"
-                name="stock"
-                placeholder="Stock..."
-                onInput={formik.handleChange}
-                value={formik.values.stock}
-                className={showError("stock") ? "error" : null}
-              />
-            </div>
-            <div className="wrapper number">
-              <label className={showError("width") ? "error" : null}>
-                Width: <span>{showError("width")}</span>
-              </label>
-              <input
-                type="number"
-                name="width"
-                placeholder="Width..."
-                onInput={formik.handleChange}
-                value={formik.values.width}
-                className={showError("width") ? "error" : null}
-              />
-            </div>
-            <div className="wrapper number">
-              <label className={showError("depth") ? "error" : null}>
-                Depth: <span>{showError("depth")}</span>
-              </label>
-              <input
-                type="number"
-                name="depth"
-                placeholder="Depth..."
-                onInput={formik.handleChange}
-                value={formik.values.depth}
-                className={showError("depth") ? "error" : null}
-              />
-            </div>
-            <div className="wrapper number">
-              <label className={showError("height") ? "error" : null}>
-                Height: <span>{showError("height")}</span>
-              </label>
-              <input
-                type="number"
-                name="height"
-                placeholder="Height..."
-                onInput={formik.handleChange}
-                value={formik.values.height}
-                className={showError("height") ? "error" : null}
-              />
+            <div className="top-2">
+              <div className="wrapper number">
+                <label className={showError("stock") ? "error" : null}>
+                  Stock: <span>{showError("stock")}</span>
+                </label>
+                <input
+                  type="number"
+                  name="stock"
+                  placeholder="Stock..."
+                  onInput={formik.handleChange}
+                  value={formik.values.stock}
+                  className={showError("stock") ? "error" : null}
+                />
+              </div>
+              <div className="wrapper number">
+                <label className={showError("width") ? "error" : null}>
+                  Width: <span>{showError("width")}</span>
+                </label>
+                <input
+                  type="number"
+                  name="width"
+                  placeholder="Width..."
+                  onInput={formik.handleChange}
+                  value={formik.values.width}
+                  className={showError("width") ? "error" : null}
+                />
+              </div>
+              <div className="wrapper number">
+                <label className={showError("depth") ? "error" : null}>
+                  Depth: <span>{showError("depth")}</span>
+                </label>
+                <input
+                  type="number"
+                  name="depth"
+                  placeholder="Depth..."
+                  onInput={formik.handleChange}
+                  value={formik.values.depth}
+                  className={showError("depth") ? "error" : null}
+                />
+              </div>
+              <div className="wrapper number">
+                <label className={showError("height") ? "error" : null}>
+                  Height: <span>{showError("height")}</span>
+                </label>
+                <input
+                  type="number"
+                  name="height"
+                  placeholder="Height..."
+                  onInput={formik.handleChange}
+                  value={formik.values.height}
+                  className={showError("height") ? "error" : null}
+                />
+              </div>
             </div>
           </div>
           <div className="middle">
