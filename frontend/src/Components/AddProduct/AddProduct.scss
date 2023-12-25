@@ -2,12 +2,122 @@
 @import "../../styles/responsive";
 @import "../../styles/mixins";
 
-.add-wrapper {
+.add-product-wrapper {
+  padding-inline: 30px;
   display: flex;
+  flex-direction: column;
 
-  .wrapper {
-    margin-inline: 50px;
-    display: inline-flex;
-    flex-direction: column;
+  input {
+    @include input;
+    font-size: 17px;
+    &::placeholder {
+      font-size: 17px;
+    }
+    &.error {
+      outline: 1px solid $color-error;
+    }
+  }
+  button {
+    @include btn;
+  }
+  label {
+    @include label;
+    &.error {
+      color: $color-error;
+    }
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    margin-block: 50px;
+    gap: 10px;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .title {
+      min-width: 500px;
+      @include devices(tablet) {
+        min-width: 300px;
+      }
+      @include devices(mobile) {
+        min-width: 200px;
+      }
+    }
+    .number {
+      min-width: 100px;
+      @include devices(tablet) {
+        min-width: 80px;
+      }
+      @include devices(mobile) {
+        min-width: 60px;
+      }
+    }
+  }
+  .middle {
+    display: flex;
+    gap: 30px;
+    margin-block: 50px;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      select {
+        @include input;
+        font-size: 17px;
+        &:hover,
+        &:focus {
+          outline: 1px solid $color-accent;
+        }
+
+        option {
+          @include input;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    @include devices(mobile) {
+      flex-direction: column;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+
+      textarea.description {
+        @include input;
+        width: 400px;
+        &::placeholder {
+          font-size: 17px;
+        }
+        &.error {
+          outline: 1px solid $color-error;
+        }
+        &:hover,
+        &:focus {
+          outline: 1px solid $color-accent;
+        }
+      }
+      textarea.features {
+        @include input;
+        width: 600px;
+        &::placeholder {
+          font-size: 17px;
+        }
+        &.error {
+          outline: 1px solid $color-error;
+        }
+        &:hover,
+        &:focus {
+          outline: 1px solid $color-accent;
+        }
+      }
+    }
   }
 }

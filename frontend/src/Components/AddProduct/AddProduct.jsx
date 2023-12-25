@@ -82,150 +82,171 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="add-wrapper container">
+      <div className="add-product-wrapper">
         <form action="" onSubmit={formik.handleSubmit}>
-          <div className="wrapper">
-            <label>
-              Title <span>{showError("title")}</span>
-            </label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Title..."
-              onInput={formik.handleChange}
-              value={formik.values.title}
-            />
+          <div className="top">
+            <div className="wrapper title">
+              <label className={showError("title") ? "error" : null}>
+                Title: <span>{showError("title")}</span>
+              </label>
+              <input
+                type="text"
+                name="title"
+                placeholder="Title..."
+                onInput={formik.handleChange}
+                value={formik.values.title}
+                className={showError("title") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper number">
+              <label className={showError("price") ? "error" : null}>
+                Price: <span>{showError("price")}</span>
+              </label>
+              <input
+                type="number"
+                name="price"
+                placeholder="Price..."
+                onInput={formik.handleChange}
+                value={formik.values.price}
+                className={showError("price") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper number">
+              <label className={showError("stock") ? "error" : null}>
+                Stock: <span>{showError("stock")}</span>
+              </label>
+              <input
+                type="number"
+                name="stock"
+                placeholder="Stock..."
+                onInput={formik.handleChange}
+                value={formik.values.stock}
+                className={showError("stock") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper number">
+              <label className={showError("width") ? "error" : null}>
+                Width: <span>{showError("width")}</span>
+              </label>
+              <input
+                type="number"
+                name="width"
+                placeholder="Width..."
+                onInput={formik.handleChange}
+                value={formik.values.width}
+                className={showError("width") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper number">
+              <label className={showError("depth") ? "error" : null}>
+                Depth: <span>{showError("depth")}</span>
+              </label>
+              <input
+                type="number"
+                name="depth"
+                placeholder="Depth..."
+                onInput={formik.handleChange}
+                value={formik.values.depth}
+                className={showError("depth") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper number">
+              <label className={showError("height") ? "error" : null}>
+                Height: <span>{showError("height")}</span>
+              </label>
+              <input
+                type="number"
+                name="height"
+                placeholder="Height..."
+                onInput={formik.handleChange}
+                value={formik.values.height}
+                className={showError("height") ? "error" : null}
+              />
+            </div>
           </div>
-          <div className="wrapper">
-            <label>
-              Price <span>{showError("price")}</span>
-            </label>
-            <input
-              type="number"
-              name="price"
-              placeholder="Price..."
-              onInput={formik.handleChange}
-              value={formik.values.price}
-            />
+          <div className="middle">
+            <div className="wrapper">
+              <label className={showError("thumbnail") ? "error" : null}>
+                Image: <span>{showError("thumbnail")}</span>
+              </label>
+              <input
+                type="file"
+                name="thumbnail"
+                onInput={(e) => {
+                  formik.setFieldValue(e.target.name, e.target.files[0]);
+                }}
+                className={showError("thumbnail") ? "error" : null}
+              />
+            </div>
+            <div className="wrapper">
+              <label className={showError("brand") ? "error" : null}>
+                Brand: <span>{showError("brand")}</span>
+              </label>
+              <select
+                name="brand"
+                onChange={formik.handleChange}
+                value={formik.values.brand}
+                className={showError("brand") ? "error" : null}
+              >
+                <option value="" disabled={true}>
+                  Brand
+                </option>
+                <option value="656e72ad16f59789743b0719">Brand1</option>
+                <option value="656e72e216f59789743b071a">Brand2</option>
+              </select>
+            </div>
+            <div className="wrapper">
+              <label className={showError("category") ? "error" : null}>
+                Category: <span>{showError("category")}</span>
+              </label>
+              <select
+                name="category"
+                onChange={formik.handleChange}
+                value={formik.values.category}
+                className={showError("category") ? "error" : null}
+              >
+                <option value="" disabled={true}>
+                  category
+                </option>
+                <option value="656e72fb16f59789743b071b">category1</option>
+                <option value="656e730e16f59789743b071c">category2</option>
+              </select>
+            </div>
           </div>
-          <div className="wrapper">
-            <label>
-              Stock <span>{showError("stock")}</span>
-            </label>
-            <input
-              type="number"
-              name="stock"
-              placeholder="Stock..."
-              onInput={formik.handleChange}
-              value={formik.values.stock}
-            />
-          </div>
-          <div className="wrapper">
-            <label>
-              Thumbnail <span>{showError("thumbnail")}</span>
-            </label>
-            <input
-              type="file"
-              name="thumbnail"
-              placeholder="Thumbnail"
-              onInput={(e) => {
-                formik.setFieldValue(e.target.name, e.target.files[0]);
-              }}
-            />
-          </div>
-          <div className="wrapper">
-            <label>
-              Brand <span>{showError("brand")}</span>
-            </label>
-            <select
-              name="brand"
-              onChange={formik.handleChange}
-              value={formik.values.brand}
-            >
-              <option value="" disabled={true}>
-                Brand
-              </option>
-              <option value="656e72ad16f59789743b0719">Brand1</option>
-              <option value="656e72e216f59789743b071a">Brand2</option>
-            </select>
-          </div>
-          <div className="wrapper">
-            <label>
-              Category <span>{showError("category")}</span>
-            </label>
-            <select
-              name="category"
-              onChange={formik.handleChange}
-              value={formik.values.category}
-            >
-              <option value="" disabled={true}>
-                category
-              </option>
-              <option value="656e72fb16f59789743b071b">category1</option>
-              <option value="656e730e16f59789743b071c">category2</option>
-            </select>
-          </div>
-          <div className="wrapper">
-            <label>
-              Description <span>{showError("description")}</span>
-            </label>
-            <textarea
-              name="description"
-              cols="30"
-              rows="10"
-              placeholder="Description..."
-              onInput={formik.handleChange}
-              value={formik.values.description}
-            ></textarea>
-          </div>
-          <div className="wrapper">
-            <label>
-              Width <span>{showError("width")}</span>
-            </label>
-            <input
-              type="number"
-              name="width"
-              placeholder="Width..."
-              onInput={formik.handleChange}
-              value={formik.values.width}
-            />
-          </div>
-          <div className="wrapper">
-            <label>
-              Depth <span>{showError("depth")}</span>
-            </label>
-            <input
-              type="number"
-              name="depth"
-              placeholder="Depth..."
-              onInput={formik.handleChange}
-              value={formik.values.depth}
-            />
-          </div>
-          <div className="wrapper">
-            <label>
-              Height <span>{showError("height")}</span>
-            </label>
-            <input
-              type="number"
-              name="height"
-              placeholder="Height..."
-              onInput={formik.handleChange}
-              value={formik.values.height}
-            />
-          </div>
-          <div className="wrapper">
-            <label>
-              Features <span>{showError("height")}</span>
-            </label>
-            <textarea
-              name="features"
-              cols="30"
-              rows="10"
-              placeholder="Features..."
-              onInput={formik.handleChange}
-              value={formik.values.features}
-            ></textarea>
+          <div className="bottom">
+            <div className="wrapper">
+              <label className={showError("description") ? "error" : null}>
+                Description: <span>{showError("description")}</span>
+              </label>
+              <textarea
+                name="description"
+                cols="30"
+                rows="10"
+                placeholder="Description..."
+                onInput={formik.handleChange}
+                value={formik.values.description}
+                className={`${
+                  showError("description") ? "error" : null
+                } description`}
+              ></textarea>
+            </div>
+
+            <div className="wrapper">
+              <label className={showError("features") ? "error" : null}>
+                Features: <span>{showError("features")}</span>
+              </label>
+              <textarea
+                name="features"
+                cols="30"
+                rows="10"
+                placeholder="Features..."
+                onInput={formik.handleChange}
+                value={formik.values.features}
+                className={`${
+                  showError("features") ? "error " : null
+                } features`}
+              ></textarea>
+            </div>
           </div>
           <div className="wrapper"> </div>
 

@@ -1,66 +1,71 @@
 @import "./variables";
 @import "./typography";
 
-@mixin btn($bg-color: $color-accent, $hover-bg-color: $color-accent-hover, $color: $white, $border: none) {
-    background-color: $bg-color;
-    color: $color;
-    padding: 15px 30px;
-    border: $border;
-    outline: none;
-    cursor: pointer;
-    margin-top: 40px;
-    font-family: Manrope;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+@mixin btn(
+  $bg-color: $color-accent,
+  $hover-bg-color: $color-accent-hover,
+  $color: $white,
+  $border: none
+) {
+  background-color: $bg-color;
+  color: $color;
+  padding: 15px 30px;
+  border: $border;
+  outline: none;
+  cursor: pointer;
+  margin-top: 40px;
+  font-family: Manrope;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 
-    &:hover {
-        background-color: $hover-bg-color;
-    }
+  &:hover {
+    background-color: $hover-bg-color;
+  }
 }
 
 @mixin label() {
-    color: $black;
-    margin-bottom: 10px;
-    text-transform: capitalize;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: -0.214px;
+  color: $black;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.214px;
 }
 
 @mixin input() {
-    width: 100%;
-    padding: 20px;
-    border-radius: 8px;
-    border: 1px solid #cfcfcf;
+  width: 100%;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #cfcfcf;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.25px;
+
+  &:hover,
+  &:focus {
+    outline: 1px solid $color-accent;
+  }
+
+  &::placeholder {
+    color: $black;
     font-size: 13px;
     font-weight: 700;
+    line-height: normal;
     letter-spacing: -0.25px;
+    opacity: 0.5;
+  }
 
-    &:hover,
-    &:focus {
-        outline: 1px solid $color-accent;
-    }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-    &::placeholder {
-        color: $black;
-        font-size: 13px;
-        font-weight: 700;
-        line-height: normal;
-        letter-spacing: -0.25px;
-        opacity: 0.5;
-    }
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    &[type="number"] {
-        -moz-appearance: textfield;
-    }
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
