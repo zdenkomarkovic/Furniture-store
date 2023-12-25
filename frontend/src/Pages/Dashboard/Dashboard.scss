@@ -20,20 +20,26 @@
         height: auto;
         cursor: pointer;
         @include devices(mobile) {
+          margin-top: 5px;
         }
       }
     }
     .nav-menu-links {
       position: absolute;
-      top: 40px;
+      top: 50px;
       left: 0;
       right: 0;
       background-color: $color-primary;
       z-index: 9;
-      border-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
       transition: $transition;
       display: flex;
       gap: 20px;
+      @include devices(mobile) {
+        top: 30px;
+        gap: 10px;
+      }
       &.hide {
         transform: translateX(-150%);
       }
@@ -84,7 +90,7 @@
     .nav-logo {
       width: 170px;
       @include devices(mobile) {
-        width: 100px;
+        width: 120px;
       }
     }
 
