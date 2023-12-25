@@ -7,16 +7,20 @@
   .dash-wrapper {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
     .nav-menu {
       @include devices(desktop) {
         display: none;
       }
       .menu-icon {
         color: white;
-        margin-top: 15px;
+
         width: 20px;
         height: auto;
         cursor: pointer;
+        @include devices(mobile) {
+        }
       }
     }
     .nav-menu-links {
@@ -106,6 +110,7 @@
           font-size: 8px;
           letter-spacing: 1px;
           font-weight: 500;
+          line-height: 15px;
         }
         &:hover {
           color: $color-accent;
