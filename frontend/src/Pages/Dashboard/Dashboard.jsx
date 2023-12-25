@@ -60,11 +60,10 @@ const Dashboard = () => {
               {user.hasOwnProperty("email") ? user.name : "My Account"}{" "}
               <SlArrowDown className="icon" />
             </p>
-            <ul className={`${dropdownMenu && "hide"}`}>
-              <li>
-                <p onClick={handleLogout}>Logout</p>
-              </li>
-            </ul>
+
+            <p className={`${dropdownMenu && "hide"}`} onClick={handleLogout}>
+              Logout
+            </p>
           </div>
         </div>
       </div>

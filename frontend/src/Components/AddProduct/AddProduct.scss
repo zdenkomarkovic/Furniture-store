@@ -1,6 +1,13 @@
-form {
-  width: 500px;
+@import "../../styles/variables";
+@import "../../styles/responsive";
+@import "../../styles/mixins";
+
+.add-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+
+  .wrapper {
+    margin-inline: 50px;
+    display: inline-flex;
+    flex-direction: column;
+  }
 }

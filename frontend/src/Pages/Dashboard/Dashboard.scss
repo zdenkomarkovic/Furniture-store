@@ -79,46 +79,21 @@
     }
     .nav-logo {
       width: 170px;
-    }
-    .nav-links {
-      // @include devices(mobile) {
-      //   display: none;
-      // }
-      // @include devices(tablet) {
-      //   display: none;
-      // }
-      display: flex;
-      gap: 35px;
-      a {
-        color: $white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 700;
-        font-size: 13px;
-        transition: $transition;
-        &:hover {
-          scale: 1.2;
-          color: $color-accent;
-        }
-        &.active {
-          color: $color-accent;
-          scale: 1.2;
-        }
+      @include devices(mobile) {
+        width: 100px;
       }
     }
+
     .log {
       position: relative;
       justify-content: center;
-      ul {
-        position: absolute;
-        top: 25px;
-        z-index: 99;
-      }
+
       .hide {
         display: none;
       }
 
       p {
+        text-align: center;
         color: $white;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -127,6 +102,11 @@
         transition: $transition;
         margin: 0;
         cursor: pointer;
+        @include devices(mobile) {
+          font-size: 8px;
+          letter-spacing: 1px;
+          font-weight: 500;
+        }
         &:hover {
           color: $color-accent;
         }
