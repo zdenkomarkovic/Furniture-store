@@ -179,7 +179,7 @@ const AddProduct = () => {
                 onInput={(e) => {
                   formik.setFieldValue(e.target.name, e.target.files[0]);
                 }}
-                className={showError("thumbnail") ? "error" : null}
+                className={`{showError("thumbnail") ? "error" : null} file`}
               />
             </div>
             <div className="wrapper">
@@ -190,7 +190,7 @@ const AddProduct = () => {
                 name="brand"
                 onChange={formik.handleChange}
                 value={formik.values.brand}
-                className={showError("brand") ? "error" : null}
+                className={`{showError("brand") ? "error" : null} select`}
               >
                 <option value="" disabled={true}>
                   Brand
@@ -207,7 +207,7 @@ const AddProduct = () => {
                 name="category"
                 onChange={formik.handleChange}
                 value={formik.values.category}
-                className={showError("category") ? "error" : null}
+                className={`{showError("category") ? "error" : null} select`}
               >
                 <option value="" disabled={true}>
                   category

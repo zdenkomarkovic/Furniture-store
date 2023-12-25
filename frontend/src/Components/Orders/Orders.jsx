@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OrderService from "../../services/OrderService";
 import { storeAllOrders } from "../../store/orderSlice";
+import "./Orders.scss";
 
 const Orders = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +24,7 @@ const Orders = () => {
       });
   });
   return (
-    <div className="orders-wrapper">
+    <div className="orders-wrapper container">
       <div className="orders">
         <h3>Orders</h3>
         <table>
@@ -31,9 +32,9 @@ const Orders = () => {
             <tr>
               <th>n</th>
               <th>Order from: </th>
-              <th>Email: </th>
-              <th>Phone: </th>
-              <th>Address:</th>
+              <th className="mobile-hide">Email: </th>
+              <th className="mobile-hide">Phone: </th>
+              <th className="mobile-hide">Address:</th>
               <th>Total Price:</th>
             </tr>
           </thead>
@@ -43,9 +44,9 @@ const Orders = () => {
                 <tr key={i} className="order-details">
                   <td>{i + 1}</td>
                   <td>{order.name}</td>
-                  <td>{order.email}</td>
-                  <td>{order.phone}</td>
-                  <td>
+                  <td className="mobile-hide">{order.email}</td>
+                  <td className="mobile-hide">{order.phone}</td>
+                  <td className="mobile-hide">
                     {order.address}, {order.city}, {order.country}
                   </td>
                   <td>{order.totalPrice}</td>
@@ -56,7 +57,7 @@ const Orders = () => {
                     <button>Print</button>
                   </td>
                   <td>
-                    <button>See products</button>
+                    <button>See order</button>
                   </td>
 
                   <p></p>

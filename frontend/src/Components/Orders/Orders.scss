@@ -1,0 +1,48 @@
+@import "../../styles/variables";
+@import "../../styles/responsive";
+@import "../../styles/mixins";
+
+.orders-wrapper {
+  font-size: 17px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: auto;
+  text-align: center;
+  @include devices(mobile) {
+    font-size: 10px;
+  }
+  table {
+    margin-inline: auto;
+    padding-inline: auto;
+    text-align: center;
+    button {
+      @include btn;
+      margin: 5px;
+      padding-block: 10px;
+      @include devices(mobile) {
+        margin: 1.5px;
+        padding-block: 3px;
+        padding-inline: 5px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0-0.25px;
+      }
+    }
+    td {
+      text-align: center;
+    }
+    td.mobile-hide {
+      @include devices(mobile) {
+        display: none;
+      }
+    }
+    th {
+      text-align: center;
+    }
+    th.mobile-hide {
+      @include devices(mobile) {
+        display: none;
+      }
+    }
+  }
+}
