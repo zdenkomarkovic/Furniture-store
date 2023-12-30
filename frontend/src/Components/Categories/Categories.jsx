@@ -39,15 +39,7 @@ const Categories = () => {
     <div className="category-wrapper">
       <div className="slider">
         <Swiper
-          modules={[
-            Navigation,
-            Pagination,
-            Scrollbar,
-            A11y,
-            Autoplay,
-            EffectCards,
-            EffectCoverflow,
-          ]}
+          modules={[A11y, Autoplay, EffectCards, EffectCoverflow]}
           effect={"coverflow"}
           coverflowEffect={{
             rotate: 0,
@@ -60,7 +52,6 @@ const Categories = () => {
           slidesPerView={2}
           centeredSlides={true}
           loop={true}
-          navigation
           grabCursor={true}
           breakpoints={{
             600: {

@@ -1,17 +1,20 @@
 @import "../../styles/responsive";
 
 .category-wrapper {
-  margin-bottom: 50px;
+  margin-block: 50px;
   width: 100%;
+
   .slider {
-    margin-top: 50px;
     width: 100%;
-    padding: 0;
-    margin: 0;
+
     div {
       div {
         border-radius: 20px;
         h6 {
+          margin-block: 7px;
+          @include devices(mobile) {
+            margin-block: 0;
+          }
         }
         img {
           border-radius: 20px;
