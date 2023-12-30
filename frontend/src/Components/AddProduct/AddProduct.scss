@@ -116,6 +116,7 @@
     display: flex;
     gap: 30px;
     margin-block: 50px;
+    width: 70%;
     @include devices(tablet) {
       gap: 10px;
       margin-block: 30px;

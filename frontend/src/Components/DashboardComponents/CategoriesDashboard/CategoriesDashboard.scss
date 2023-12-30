@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+@import "../../../styles/responsive";
+@import "../../../styles/mixins";
+
+.category-wrapper {
+  padding-inline: 30px;
+  h6 {
+    text-align: center;
+    margin-block: 30px;
+    margin-bottom: 30px;
+  }
+  .categories {
+    margin-top: 50px;
+    font-size: 20px;
+    h4 {
+      text-align: center;
+    }
+
+    td {
+      padding-block: 10px;
+      padding-inline: 10px;
+      img {
+        width: 110px;
+        height: 80px;
+      }
+      button {
+        @include btn;
+        margin: 0;
+      }
+    }
+  }
+}

@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <section className="dashboard-wrapper">
       <div className="header">
-        <div className="container dash-wrapper">
+        <div className=" dash-wrapper">
           <div className="nav-menu" onClick={toogleMenu}>
             {toggleMenu ? (
               <AiOutlineClose className="menu-icon" />

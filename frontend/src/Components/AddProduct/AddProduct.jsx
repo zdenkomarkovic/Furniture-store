@@ -4,16 +4,7 @@ import * as Yup from "yup";
 import { FileParser } from "../../utils/FileParser";
 import ProductService from "../../services/ProductService";
 import { toast } from "react-toastify";
-
-const VALID_TYPE = [
-  "image/jpg",
-  "image/png",
-  "image/jpeg",
-  "image/svg",
-  "image/webp",
-];
-const KB = 1024;
-const MB = KB * 1024;
+import { MB, VALID_TYPE } from "../../config/config";
 
 const AddProduct = () => {
   const formik = useFormik({
@@ -31,22 +22,22 @@ const AddProduct = () => {
       depth: "",
     },
     validationSchema: Yup.object({
-      title: Yup.string().required("Field is required"),
-      price: Yup.string().required("Field is required"),
-      stock: Yup.string().required("Field is required"),
-      brand: Yup.string().required("Field is required"),
-      category: Yup.string().required("Field is required"),
-      description: Yup.string().required("Field is required"),
+      title: Yup.string().required("required"),
+      price: Yup.string().required("required"),
+      stock: Yup.string().required("required"),
+      brand: Yup.string().required("required"),
+      category: Yup.string().required("required"),
+      description: Yup.string().required("required"),
       thumbnail: Yup.mixed()
-        .required("Field is required")
+        .required("required")
         .test("fileType", "Invalid file type", (value) =>
           VALID_TYPE.includes(value.type)
         )
         .test("fileSize", "Invalid file size", (value) => value.size < 2 * MB),
-      features: Yup.string().required("Field is required"),
-      width: Yup.string().required("Field is required"),
-      height: Yup.string().required("Field is required"),
-      depth: Yup.string().required("Field is required"),
+      features: Yup.string().required("required"),
+      width: Yup.string().required("required"),
+      height: Yup.string().required("required"),
+      depth: Yup.string().required("required"),
     }),
     onSubmit: (values) => {
       FileParser(values.thumbnail)
@@ -57,7 +48,7 @@ const AddProduct = () => {
             .then((res) => {
               toast(res.data, {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 1500,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,

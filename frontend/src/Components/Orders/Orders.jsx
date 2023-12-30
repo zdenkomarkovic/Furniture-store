@@ -24,7 +24,7 @@ const Orders = () => {
       });
   });
   return (
-    <div className="orders-wrapper container">
+    <div className="orders-wrapper">
       <div className="orders">
         <h3>Orders</h3>
         <table>

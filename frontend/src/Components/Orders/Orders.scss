@@ -3,7 +3,7 @@
 @import "../../styles/mixins";
 
 .orders-wrapper {
-  font-size: 17px;
+  font-size: 13px;
   width: 100%;
   margin-inline: auto;
   padding-inline: auto;
@@ -17,8 +17,11 @@
     text-align: center;
     button {
       @include btn;
-      margin: 5px;
-      padding-block: 10px;
+      margin: 3px;
+      padding-block: 5px;
+      padding-inline: 10px;
+      font-size: 12px;
+
       @include devices(mobile) {
         margin: 1.5px;
         padding-block: 3px;

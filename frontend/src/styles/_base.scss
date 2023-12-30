@@ -6,55 +6,58 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {
-    background: $color-accent;
-    color: $white;
+  background: $color-accent;
+  color: $white;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Manrope", sans-serif;
-    font-size: $base-font-size;
-    line-height: $base-line-height;
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 img {
-    max-width: 100%;
-    display: block;
+  max-width: 100%;
+  display: block;
 }
-
+.dashboard-container {
+  margin-left: 170px;
+  padding-left: 170px;
+}
 .container {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 
-    @include devices(mobile) {
-        width: 90%;
-    }
-    @include devices(tablet) {
-        width: 90%;
-    }
+  @include devices(mobile) {
+    width: 90%;
+  }
+  @include devices(tablet) {
+    width: 90%;
+  }
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: $color-accent;
+  border-radius: 8px;
+  background-color: $color-accent;
 }

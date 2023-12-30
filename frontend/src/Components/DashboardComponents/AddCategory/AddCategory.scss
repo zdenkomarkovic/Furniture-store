@@ -1,0 +1,29 @@
+@import "../../../styles/variables";
+@import "../../../styles/responsive";
+@import "../../../styles/mixins";
+
+.addcategory-wrapper {
+  form {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      label {
+        @include label;
+        &.error {
+          color: red;
+        }
+      }
+      input {
+        @include input;
+      }
+    }
+    button {
+      @include btn;
+
+      margin-top: 25px;
+    }
+  }
+}

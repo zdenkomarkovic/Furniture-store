@@ -1,0 +1,10 @@
+GET http://localhost:4000/category/allCategories
+
+
+POST http://localhost:4000/category/addCategory
+Content-Type: application/json
+
+{
+    "title": "Corner sofa",
+    "image": "kjjhjpopu"
+}

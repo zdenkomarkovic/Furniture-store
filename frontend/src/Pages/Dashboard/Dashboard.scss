@@ -10,6 +10,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include devices(desktop) {
+      padding-left: 150px;
+      padding-right: 80px;
+    }
 
     .nav-menu {
       @include devices(desktop) {
@@ -166,7 +170,7 @@
     width: 100%;
     margin-top: 50px;
     @include devices(desktop) {
-      padding-left: 50px;
+      padding-left: 160px;
     }
   }
 }

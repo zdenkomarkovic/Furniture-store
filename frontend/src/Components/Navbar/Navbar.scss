@@ -31,7 +31,8 @@
       width: 100%;
       background-color: $color-primary;
       z-index: 9;
-      border-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
       transition: $transition;
       display: flex;
       gap: 20px;
