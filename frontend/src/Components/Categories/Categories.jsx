@@ -54,7 +54,6 @@ const Categories = () => {
             strech: 0,
             depth: 100,
             modifier: 2.5,
-            slideShadows: true,
             scale: 1,
           }}
           autoplay={{ delay: 1500 }}
@@ -63,7 +62,6 @@ const Categories = () => {
           loop={true}
           navigation
           grabCursor={true}
-          pagination={{ clickable: true }}
           breakpoints={{
             600: {
               slidesPerView: 3,
