@@ -1,28 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Categories.scss";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import CategoryService from "../../services/CategoryService";
-
 import { setAllCategories } from "../../store/categorySlice";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-  EffectCards,
-  EffectCoverflow,
-} from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/autoplay";
-
 const Categories = () => {
+  const [current, setCurrent] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [slidesToShow, setSlidesToShow] = useState(
+    window.innerWidth > 600 ? 5 : 3
+  );
+
+  const sliderRef = useRef(null);
   const dispatch = useDispatch();
+
   const { categories } = useSelector((state) => state.categoryStore);
 
   useEffect(() => {
@@ -33,41 +25,109 @@ const Categories = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [categories]);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSlidesToShow(window.innerWidth > 600 ? 5 : 3);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const updateSlide = (newCurrent) => {
+    setCurrent(newCurrent);
+  };
+
+  const nextSlide = () => {
+    updateSlide(current === categories.length - 1 ? 0 : current + 1);
+  };
+
+  const prevSlide = () => {
+    updateSlide(current === 0 ? categories.length - 1 : current - 1);
+  };
+
+  const getSlides = () => {
+    let slides = [];
+    if (categories && categories.length > 0) {
+      for (let i = 0; i < slidesToShow; i++) {
+        const index = (current + i) % categories.length;
+        if (categories[index]) {
+          slides.push(categories[index]);
+        }
+      }
+    }
+    return slides;
+  };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prevCurrent) =>
+        prevCurrent === categories.length - 1 ? 0 : prevCurrent + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(timer);
+  }, [updateSlide]);
+
+  const threshold = 100;
+
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setStartX(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    const x = e.clientX;
+    const diff = startX - x;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+      setStartX(x);
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
 
   return (
     <div className="category-wrapper">
-      <div className="slider">
-        <Swiper
-          modules={[A11y, Autoplay, EffectCards, EffectCoverflow]}
-          effect={"coverflow"}
-          coverflowEffect={{
-            rotate: 0,
-            strech: 0,
-            depth: 100,
-            modifier: 2.5,
-            scale: 1,
-          }}
-          autoplay={{ delay: 1500 }}
-          slidesPerView={2}
-          centeredSlides={true}
-          loop={true}
-          grabCursor={true}
-          breakpoints={{
-            600: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          {categories?.map((category, i) => {
-            return (
-              <SwiperSlide key={i}>
-                <h6>{category.title}</h6>
-                <img src={category.image} />
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
+      <div
+        ref={sliderRef}
+        className="slider"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp} // Kada korisnik otpusti miša
+        onMouseLeave={handleMouseUp}
+      >
+        {getSlides().map((category, i) => {
+          let positionClass = "";
+          if (window.innerWidth > 600) {
+            if (i === 0) positionClass = "left2";
+            else if (i === 1) positionClass = "left";
+            else if (i === 2) positionClass = "center";
+            else if (i === 3) positionClass = "right";
+            else if (i === 4) positionClass = "right2";
+          } else {
+            if (i === 0) positionClass = "left";
+            else if (i === 1) positionClass = "center";
+            else if (i === 2) positionClass = "right";
+          }
+          return (
+            <div key={i} className={`category-item ${positionClass}`}>
+              <h6>{category.title}</h6>
+              <img src={category.image} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

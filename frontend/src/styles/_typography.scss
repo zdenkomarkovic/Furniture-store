@@ -30,67 +30,67 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 h1 {
-    font-size: $h1-font-size;
-    letter-spacing: $h1-letter-spacing;
-    line-height: $h1-line-height;
+  font-size: $h1-font-size;
+  letter-spacing: $h1-letter-spacing;
+  line-height: $h1-line-height;
 
-    @include devices(mobile) {
-        font-size: 36px;
-        line-height: 40px;
-        letter-spacing: 1.286px;
-    }
+  @include devices(mobile) {
+    font-size: 36px;
+    line-height: 40px;
+    letter-spacing: 1.286px;
+  }
 }
 
 h2 {
-    font-size: $h2-font-size;
-    letter-spacing: $h2-letter-spacing;
-    line-height: $h2-line-height;
+  font-size: $h2-font-size;
+  letter-spacing: $h2-letter-spacing;
+  line-height: $h2-line-height;
 
-    @include devices(mobile) {
-        font-size: 28px;
-        letter-spacing: 1px;
-    }
+  @include devices(mobile) {
+    font-size: 28px;
+    letter-spacing: 1px;
+  }
 }
 
 h3 {
-    font-size: $h3-font-size;
-    letter-spacing: $h3-letter-spacing;
-    line-height: $h3-line-height;
+  font-size: $h3-font-size;
+  letter-spacing: $h3-letter-spacing;
+  line-height: $h3-line-height;
 
-    @include devices(mobile) {
-        font-size: 24px;
-        letter-spacing: 1px;
-    }
+  @include devices(mobile) {
+    font-size: 24px;
+    letter-spacing: 1px;
+  }
 }
 
 h4 {
-    font-size: $h4-font-size;
-    letter-spacing: $h4-letter-spacing;
+  font-size: $h4-font-size;
+  letter-spacing: $h4-letter-spacing;
 }
 
 h5 {
-    font-size: $h5-font-size;
-    letter-spacing: $h5-letter-spacing;
+  font-size: $h5-font-size;
+  letter-spacing: $h5-letter-spacing;
 }
 
 h6 {
-    font-size: $h6-font-size;
-    letter-spacing: $h6-letter-spacing;
+  font-size: $h6-font-size;
+  letter-spacing: $h6-letter-spacing;
 
-    @include devices(mobile) {
-        font-size: 15px;
-        letter-spacing: 1.071px;
-    }
+  @include devices(mobile) {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+  }
 }
 
 .uppercase-text {
-    font-family: Manrope;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  font-family: Manrope;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
