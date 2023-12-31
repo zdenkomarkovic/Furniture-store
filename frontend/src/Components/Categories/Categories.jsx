@@ -71,7 +71,7 @@ const Categories = () => {
     return () => clearInterval(timer);
   }, [updateSlide]);
 
-  const threshold = 100;
+  const threshold = 50;
 
   const handleMouseDown = (e) => {
     e.preventDefault();
@@ -122,7 +122,7 @@ const Categories = () => {
   };
 
   return (
-    <div className="category-wrapper">
+    <div className="category-wrapper ">
       <div
         ref={sliderRef}
         className="slider"
