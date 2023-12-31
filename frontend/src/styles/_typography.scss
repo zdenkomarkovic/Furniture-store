@@ -82,7 +82,7 @@ h6 {
   letter-spacing: $h6-letter-spacing;
 
   @include devices(mobile) {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 0.6px;
   }
 }
