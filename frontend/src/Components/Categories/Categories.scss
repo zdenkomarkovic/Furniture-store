@@ -1,7 +1,8 @@
 @import "../../styles/responsive";
-
+@import "../../styles/variables";
+@import "../../styles/typography";
 .category-wrapper {
-  margin-block: 50px;
+  margin-block: 70px;
   width: 90%;
   margin-inline: auto;
   @include devices(tablet) {
@@ -9,13 +10,13 @@
   }
   @include devices(mobile) {
     width: 95%;
+    margin-block: 80px;
   }
 
   .slider {
     display: flex;
-
     .category-item {
-      transition: transform 0.3s ease-in-out;
+      transition: all 0.5s linear;
       position: relative;
       z-index: 1;
       border-radius: 8px;
@@ -41,22 +42,36 @@
     .category-item.left2 {
       transform: scale(0.95) translateX(0);
       z-index: 0;
+      transition: all 0.5s linear;
     }
     .category-item.left {
       transform: scale(1.07) translateX(-10%);
       z-index: 1;
+      @include devices(mobile) {
+        transform: scale(1.2);
+        transition: all 0.5s linear;
+      }
     }
     .category-item.right {
       transform: scale(1.07) translateX(10%);
       z-index: 1;
+      transition: all 0.5s linear;
+      @include devices(mobile) {
+        transform: scale(1.2);
+      }
     }
     .category-item.right2 {
       transform: scale(0.95) translateX(0);
       z-index: 0;
+      transition: all 0.5s linear;
     }
     .category-item.center {
       transform: scale(1.2);
       z-index: 2;
+      transition: all 0.5s linear;
+      @include devices(mobile) {
+        transform: scale(1.4);
+      }
     }
   }
 }

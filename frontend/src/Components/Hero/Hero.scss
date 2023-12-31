@@ -4,15 +4,13 @@
 
 .hero-wrapper {
   background-color: $color-primary;
-  @include devices(mobile) {
-    padding-block: 80px;
-  }
+
   .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding-block: 100px;
+    padding-block: 50px;
 
     @include devices(tablet) {
       flex-direction: column;
@@ -22,7 +20,7 @@
 
     .text {
       color: $white;
-      padding-bottom: 100px;
+      padding-bottom: 50px;
       @include devices(mobile) {
         margin-top: 60px;
         margin-bottom: 0;
@@ -57,6 +55,7 @@
       }
       button {
         @include btn($color-accent, $color-accent-hover, none);
+
         a {
           color: $white;
         }
@@ -64,10 +63,10 @@
     }
     .image {
       .hero-image {
-        height: auto;
+        height: 400px;
         width: 800px;
         object-fit: cover;
-        border-radius: 50px;
+        border-radius: 20px;
       }
     }
   }
