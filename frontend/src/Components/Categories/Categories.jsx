@@ -98,6 +98,29 @@ const Categories = () => {
     setIsDragging(false);
   };
 
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    setStartX(touch.clientX);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    const touch = e.touches[0];
+    const x = touch.clientX;
+    const diff = startX - x;
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) nextSlide();
+      else prevSlide();
+      setStartX(x);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   return (
     <div className="category-wrapper">
       <div
@@ -105,8 +128,11 @@ const Categories = () => {
         className="slider"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp} // Kada korisnik otpusti miša
+        onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {getSlides().map((category, i) => {
           let positionClass = "";
