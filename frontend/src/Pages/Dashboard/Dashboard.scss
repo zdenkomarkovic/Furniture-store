@@ -168,9 +168,13 @@
   .content-wrapper {
     margin-inline: auto;
     width: 100%;
-    margin-top: 50px;
+
     @include devices(desktop) {
       padding-left: 160px;
+      margin-top: 50px;
+    }
+    @include devices(tablet) {
+      margin-top: 20px;
     }
   }
 }

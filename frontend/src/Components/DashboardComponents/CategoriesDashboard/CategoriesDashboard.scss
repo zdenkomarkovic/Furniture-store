@@ -9,8 +9,10 @@
   }
   h6 {
     text-align: center;
-    margin-block: 30px;
     margin-bottom: 30px;
+    @include devices(mobile) {
+      margin-bottom: 30px;
+    }
   }
   .categories {
     margin-top: 50px;

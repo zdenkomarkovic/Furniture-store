@@ -5,8 +5,13 @@
 .addcategory-wrapper {
   form {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 30px;
+    @include devices(mobile) {
+      gap: 10px;
+    }
+
     .wrapper {
       display: flex;
       flex-direction: column;
@@ -24,6 +29,9 @@
       @include btn;
 
       margin-top: 25px;
+      @include devices(mobile) {
+        margin-top: 0;
+      }
     }
   }
 }
