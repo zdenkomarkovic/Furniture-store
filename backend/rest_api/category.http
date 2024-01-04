@@ -1,10 +1,22 @@
 GET http://localhost:4000/category/allCategories
 
+GET http://localhost:4000/category/singleCategory/658b82925cf1924907c790f7
+
 
 POST http://localhost:4000/category/addCategory
 Content-Type: application/json
 
 {
     "title": "Corner sofa",
+    "image": "kjjhjpopu"
+}
+
+
+DELETE http://localhost:4000/category/delete/658c87ee4d9cbd8289c99d02
+
+PUT http://localhost:4000/category/update/6592c6b1b6fc2bbe1e80bde6
+Content-Type: application/json
+{
+    "title": "Table",
     "image": "kjjhjpopu"
 }

@@ -15,8 +15,9 @@
 
   .slider {
     display: flex;
+
     .category-item {
-      transition: all 0.5s linear;
+      transition: all 0.5s ease-in-out;
       position: relative;
       z-index: 1;
       border-radius: 8px;
@@ -42,20 +43,17 @@
     .category-item.left2 {
       transform: scale(0.95) translateX(0);
       z-index: 0;
-      transition: all 0.5s linear;
     }
     .category-item.left {
       transform: scale(1.07) translateX(-10%);
       z-index: 1;
       @include devices(mobile) {
         transform: scale(1.2);
-        transition: all 0.5s linear;
       }
     }
     .category-item.right {
       transform: scale(1.07) translateX(10%);
       z-index: 1;
-      transition: all 0.5s linear;
       @include devices(mobile) {
         transform: scale(1.2);
       }
@@ -63,12 +61,10 @@
     .category-item.right2 {
       transform: scale(0.95) translateX(0);
       z-index: 0;
-      transition: all 0.5s linear;
     }
     .category-item.center {
       transform: scale(1.2);
       z-index: 2;
-      transition: all 0.5s linear;
       @include devices(mobile) {
         transform: scale(1.4);
       }
