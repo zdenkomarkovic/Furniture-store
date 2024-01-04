@@ -9,7 +9,6 @@
     width: 95%;
   }
   @include devices(mobile) {
-    width: 95%;
     margin-block: 80px;
   }
 
@@ -33,7 +32,9 @@
         }
         @include devices(mobile) {
           margin-block: 0;
-          font-size: 11px;
+          font-size: 9.5px;
+          letter-spacing: 0.3px;
+          line-height: 16px;
         }
       }
       img {
@@ -66,7 +67,7 @@
       transform: scale(1.2);
       z-index: 2;
       @include devices(mobile) {
-        transform: scale(1.4);
+        transform: scale(1.45);
       }
     }
   }

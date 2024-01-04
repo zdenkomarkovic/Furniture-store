@@ -51,16 +51,7 @@ const AddCategory = ({ item }) => {
       if (isUpdating && updateImage) {
         CategoryService.updateCategory(item._id, values)
           .then((res) => {
-            toast(res.data, {
-              position: "top-right",
-              autoClose: 1500,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+            toast.success("Category updated");
           })
           .catch((err) => console.log(err));
 
@@ -72,16 +63,7 @@ const AddCategory = ({ item }) => {
             console.log(values);
             CategoryService.updateCategory(item._id, values)
               .then((res) => {
-                toast(res.data, {
-                  position: "top-right",
-                  autoClose: 1500,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                });
+                toast.success("Category updated");
               })
               .catch((err) => console.log(err));
           })
@@ -94,16 +76,7 @@ const AddCategory = ({ item }) => {
             console.log(values);
             CategoryService.addCategory(values)
               .then((res) => {
-                toast(res.data, {
-                  position: "top-right",
-                  autoClose: 1500,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                });
+                toast.success("Category added");
               })
               .catch((err) => console.log(err));
           })

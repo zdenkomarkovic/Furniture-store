@@ -18,10 +18,10 @@ export const routes = {
 
 export const mainNavbarItem = [
   routes.HOME,
-  routes.ABOUT,
+  // routes.ABOUT,
   routes.PRODUCTS,
   routes.CONTACT,
-  routes.STORES,
+  // routes.STORES,
 ];
 
 export const dashboardSidebarItem = [

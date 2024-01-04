@@ -8,6 +8,8 @@ import { SlArrowDown } from "react-icons/sl";
 import { logoutUser } from "../../store/userSlice";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineClose } from "react-icons/ai";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const [dropdownMenu, setDropdownMenu] = useState(true);
@@ -84,6 +86,7 @@ const Dashboard = () => {
           </aside>
           <div className="content-wrapper">
             <Outlet />
+            <ToastContainer />
           </div>
         </div>
       </section>
