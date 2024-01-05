@@ -10,6 +10,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    @include devices(tablet) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
     @include devices(desktop) {
       padding-left: 150px;
       padding-right: 80px;
@@ -168,13 +174,14 @@
   .content-wrapper {
     margin-inline: auto;
     width: 100%;
+    margin-top: 33px;
 
     @include devices(desktop) {
       padding-left: 160px;
       margin-top: 50px;
     }
     @include devices(tablet) {
-      margin-top: 20px;
+      margin-top: 50px;
     }
   }
 }

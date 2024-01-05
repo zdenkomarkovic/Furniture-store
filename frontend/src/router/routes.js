@@ -14,6 +14,7 @@ export const routes = {
   SINGLE: { path: "/single/:id" },
   CHECKOUT: { path: "/checkout" },
   CATEGORIES_DASHBOARD: { path: "categoriesDashboard", name: "Categories" },
+  PRODUCTS_DASHBOARD: { path: "productsDashboard", name: "Products" },
 };
 
 export const mainNavbarItem = [
@@ -30,4 +31,5 @@ export const dashboardSidebarItem = [
   routes.ADD_PRODUCT,
   routes.REGISTER,
   routes.CATEGORIES_DASHBOARD,
+  routes.PRODUCTS_DASHBOARD,
 ];

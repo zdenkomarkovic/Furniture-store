@@ -1,10 +1,10 @@
 import "./AddProduct.scss";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FileParser } from "../../utils/FileParser";
-import ProductService from "../../services/ProductService";
+import { FileParser } from "../../../utils/FileParser";
+import ProductService from "../../../services/ProductService";
 import { toast } from "react-toastify";
-import { MB, VALID_TYPE } from "../../config/config";
+import { MB, VALID_TYPE } from "../../../config/config";
 
 const AddProduct = () => {
   const formik = useFormik({
@@ -73,7 +73,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <div className="add-product-wrapper container">
+      <div className="add-product-wrapper">
         <form action="" onSubmit={formik.handleSubmit}>
           <div className="top">
             <div className="top-1">
@@ -170,7 +170,7 @@ const AddProduct = () => {
                 onInput={(e) => {
                   formik.setFieldValue(e.target.name, e.target.files[0]);
                 }}
-                className={`{showError("thumbnail") ? "error" : null} file`}
+                className={showError("thumbnail") ? "error file" : "file"}
               />
             </div>
             <div className="wrapper">
@@ -181,7 +181,7 @@ const AddProduct = () => {
                 name="brand"
                 onChange={formik.handleChange}
                 value={formik.values.brand}
-                className={`{showError("brand") ? "error" : null} select`}
+                className={showError("brand") ? "error select" : "select"}
               >
                 <option value="" disabled={true}>
                   Brand
@@ -198,7 +198,7 @@ const AddProduct = () => {
                 name="category"
                 onChange={formik.handleChange}
                 value={formik.values.category}
-                className={`{showError("category") ? "error" : null} select`}
+                className={showError("category") ? "error select" : "select"}
               >
                 <option value="" disabled={true}>
                   category

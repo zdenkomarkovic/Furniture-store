@@ -1,0 +1,88 @@
+@import "../../../styles/variables";
+@import "../../../styles/responsive";
+@import "../../../styles/mixins";
+
+.products-dash-wrapper {
+  padding: 40px 60px;
+
+  @include devices(tablet) {
+    padding: 30px 10px;
+  }
+  @include devices(mobile) {
+    padding: 20px 10px;
+  }
+  .products-dash {
+    margin-top: 50px;
+    font-size: 20px;
+    @include devices(mobile) {
+      padding-inline: auto;
+    }
+    h4 {
+      text-align: center;
+    }
+    table {
+      @include devices(tablet) {
+        margin-inline: auto;
+      }
+      @include devices(mobile) {
+        margin-inline: auto;
+      }
+
+      tr {
+        th {
+          font-size: 15px;
+
+          @include devices(tablet) {
+            font-size: 11px;
+          }
+          @include devices(mobile) {
+            display: none;
+          }
+        }
+        td {
+          padding: 10px 25px;
+          border-bottom: solid 1px black;
+          @include devices(tablet) {
+            padding: 10px;
+          }
+          @include devices(mobile) {
+            padding: 3px;
+          }
+          &.view {
+            @include devices(mobile) {
+              display: none;
+            }
+          }
+          p {
+            font-size: 22px;
+            @include devices(tablet) {
+              font-size: 17px;
+            }
+            @include devices(mobile) {
+              font-size: 13px;
+            }
+          }
+          img {
+            width: 110px;
+            height: 80px;
+          }
+          button {
+            background-color: $color-accent;
+            padding: 15px 20px;
+            margin: 0;
+            font-size: 22px;
+            border: none;
+            color: white;
+
+            @include devices(mobile) {
+              font-size: 18px;
+            }
+            &.delete {
+              background-color: rgb(204, 7, 7);
+            }
+          }
+        }
+      }
+    }
+  }
+}

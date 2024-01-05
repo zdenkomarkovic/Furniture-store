@@ -17,6 +17,11 @@
       justify-content: center;
       text-align: center;
     }
+    @include devices(mobile) {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
 
     .text {
       color: $white;
@@ -24,8 +29,8 @@
       @include devices(mobile) {
         margin-top: 60px;
         margin-bottom: 0;
-        position: absolute;
-        width: 70%;
+        z-index: 50;
+        width: 90%;
         left: 0;
         right: 0;
         margin: 0 auto;
@@ -59,6 +64,9 @@
         a {
           color: $white;
         }
+        @include devices(mobile) {
+          margin: 0;
+        }
       }
     }
     .image {
@@ -67,6 +75,17 @@
         width: 800px;
         object-fit: cover;
         border-radius: 20px;
+        @include devices(mobile) {
+          position: absolute;
+          top: 20%;
+          left: 0;
+          right: 0;
+          margin-inline: auto;
+
+          height: auto;
+          width: 90%;
+          border-radius: 15px;
+        }
       }
     }
   }

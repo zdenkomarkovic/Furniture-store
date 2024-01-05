@@ -40,10 +40,9 @@ const CategoriesDashboard = () => {
   };
 
   return (
-    <div className="category-wrapper ">
-      <h6>Categories</h6>
+    <div className="category-dash-wrapper ">
       <AddCategory item={selectedCategoryId} />
-      <div className="categories">
+      <div className="categories-dash">
         {isLoading ? (
           <h4>Loading...</h4>
         ) : (
@@ -67,7 +66,10 @@ const CategoriesDashboard = () => {
                       </button>
                     </td>
                     <td>
-                      <button onClick={() => handleDeleteCategory(item)}>
+                      <button
+                        onClick={() => handleDeleteCategory(item)}
+                        className="delete"
+                      >
                         <GoTrash />
                       </button>
                     </td>
