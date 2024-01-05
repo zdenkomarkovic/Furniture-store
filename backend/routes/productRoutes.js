@@ -1,19 +1,24 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 router.get(
-  '/:limit/:page',
-  require('../controlers/productControler/pagination')
+  "/:limit/:page",
+  require("../controlers/productControler/pagination")
 );
 router.get(
-  '/getAllProducts',
-  require('../controlers/productControler/getAllProducts')
+  "/getAllProducts",
+  require("../controlers/productControler/getAllProducts")
 );
-router.get('/:id', require('../controlers/productControler/getSingleProduct'));
+router.get("/:id", require("../controlers/productControler/getSingleProduct"));
 
 router.post(
-  '/addProduct',
-  require('../controlers/productControler/addProduct')
+  "/addProduct",
+  require("../controlers/productControler/addProduct")
+);
+
+router.delete(
+  "/delete/:id",
+  require("../controlers/productControler/deleteProduct")
 );
 
 module.exports = router;

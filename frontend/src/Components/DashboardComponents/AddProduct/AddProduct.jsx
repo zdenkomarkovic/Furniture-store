@@ -5,8 +5,21 @@ import { FileParser } from "../../../utils/FileParser";
 import ProductService from "../../../services/ProductService";
 import { toast } from "react-toastify";
 import { MB, VALID_TYPE } from "../../../config/config";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import CategoryService from "../../../services/CategoryService";
 
 const AddProduct = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    CategoryService.allCategories()
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -201,10 +214,15 @@ const AddProduct = () => {
                 className={showError("category") ? "error select" : "select"}
               >
                 <option value="" disabled={true}>
-                  category
+                  Category
                 </option>
-                <option value="656e72fb16f59789743b071b">category1</option>
-                <option value="656e730e16f59789743b071c">category2</option>
+                {categories?.map((category, i) => {
+                  return (
+                    <option key={i} value={category._id}>
+                      {category.title}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>

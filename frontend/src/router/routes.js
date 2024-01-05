@@ -28,7 +28,7 @@ export const mainNavbarItem = [
 export const dashboardSidebarItem = [
   routes.HOME,
   routes.ORDERS,
-  routes.ADD_PRODUCT,
+
   routes.REGISTER,
   routes.CATEGORIES_DASHBOARD,
   routes.PRODUCTS_DASHBOARD,

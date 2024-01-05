@@ -10,10 +10,6 @@ export const dashboardChildren = [
     element: <Orders />,
   },
   {
-    path: routes.ADD_PRODUCT.path,
-    element: <AddProduct />,
-  },
-  {
     path: routes.ORDERS.path,
     element: <Orders />,
   },
