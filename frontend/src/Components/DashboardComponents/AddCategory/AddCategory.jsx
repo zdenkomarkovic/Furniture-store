@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useRef } from "react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
@@ -9,82 +10,69 @@ import { FileParser } from "../../../utils/FileParser";
 import "./AddCategory.scss";
 
 const AddCategory = ({ item }) => {
-  const isUpdating = !!item;
+  const [isUpdating, setIsUpdating] = useState(false);
   const [updateImage, setUpdateImage] = useState(false);
+  const inputRef = useRef(null);
 
   let initialValues = {
     title: "",
     image: null,
   };
 
-  const validacija = Yup.object({
+  const validationSchema = Yup.object({
     title: Yup.string().required("required"),
-    image: Yup.mixed()
-      .required("required")
-      .test("fileType", "Invalid file type", (value) =>
-        VALID_TYPE.includes(value.type)
-      )
-      .test("fileSize", "Invalid file size", (value) => value.size < 2 * MB),
+    image:
+      isUpdating && updateImage
+        ? Yup.mixed().notRequired()
+        : Yup.mixed()
+            .required("required")
+            .test("fileType", "Invalid file type", (value) =>
+              VALID_TYPE.includes(value.type)
+            )
+            .test(
+              "fileSize",
+              "Invalid file size",
+              (value) => value.size < 2 * MB
+            ),
   });
-  const updateValidacija = Yup.object({
-    title: Yup.string().required("required"),
-    image: Yup.mixed().notRequired(),
-  });
-
-  let validation = updateImage ? updateValidacija : validacija;
-
-  useEffect(() => {
-    if (isUpdating) {
-      initialValues.title = item.title;
-      initialValues.image = item.image;
-
-      formik.setValues(initialValues);
-
-      setUpdateImage(true);
-    }
-  }, [isUpdating, item]);
 
   const formik = useFormik({
-    initialValues: initialValues,
-    validationSchema: validation,
-    onSubmit: (values) => {
-      if (isUpdating && updateImage) {
-        CategoryService.updateCategory(item._id, values)
-          .then((res) => {
-            toast.success("Category updated");
-          })
-          .catch((err) => console.log(err));
+    initialValues,
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const processedValues = { ...values };
+        if (!isUpdating || (isUpdating && !updateImage)) {
+          processedValues.image = await FileParser(values.image);
+        }
+        isUpdating
+          ? await CategoryService.updateCategory(item._id, processedValues)
+          : await CategoryService.addCategory(processedValues);
 
+        toast.success(`Category ${isUpdating ? "updated" : "added"}`);
         formik.resetForm();
-      } else if (isUpdating) {
-        FileParser(values.image)
-          .then((res) => {
-            values.image = res;
-            console.log(values);
-            CategoryService.updateCategory(item._id, values)
-              .then((res) => {
-                toast.success("Category updated");
-              })
-              .catch((err) => console.log(err));
-          })
-          .catch((err) => console.log(err));
-        formik.resetForm();
-      } else {
-        FileParser(values.image)
-          .then((res) => {
-            values.image = res;
-            console.log(values);
-            CategoryService.addCategory(values)
-              .then((res) => {
-                toast.success("Category added");
-              })
-              .catch((err) => console.log(err));
-          })
-          .catch((err) => console.log(err));
-        formik.resetForm();
+        setIsUpdating(false);
+      } catch (err) {
+        console.error(err);
+        toast.error("An error occured");
       }
     },
   });
+
+  useEffect(() => {
+    if (item) {
+      formik.setValues({
+        title: item.title,
+        image: item.image,
+      });
+      setIsUpdating(true);
+      setUpdateImage(true);
+      inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      setIsUpdating(false);
+      setUpdateImage(false);
+    }
+  }, [item, formik.setValues]);
   const showError = (name) =>
     formik.errors[name] && formik.touched[name] && formik.errors[name];
   return (
@@ -95,6 +83,7 @@ const AddCategory = ({ item }) => {
             Category: <span>{showError("title")}</span>
           </label>
           <input
+            ref={inputRef}
             type="text"
             name="title"
             placeholder="Enter category..."

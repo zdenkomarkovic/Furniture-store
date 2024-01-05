@@ -16,6 +16,11 @@ router.post(
   require("../controlers/productControler/addProduct")
 );
 
+router.put(
+  "/update/:id",
+  require("../controlers/productControler/updateProduct")
+);
+
 router.delete(
   "/delete/:id",
   require("../controlers/productControler/deleteProduct")

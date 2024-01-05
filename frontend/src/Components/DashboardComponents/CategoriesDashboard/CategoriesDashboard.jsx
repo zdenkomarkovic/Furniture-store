@@ -12,7 +12,7 @@ import { LuPenLine } from "react-icons/lu";
 const CategoriesDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const { categories } = useSelector((state) => state.categoryStore);
 
@@ -35,13 +35,13 @@ const CategoriesDashboard = () => {
       })
       .catch((err) => console.log(err));
   };
-  const handleEditCategory = (categoryId) => {
-    setSelectedCategoryId(categoryId);
+  const handleEditCategory = (category) => {
+    setSelectedCategory(category);
   };
 
   return (
     <div className="category-dash-wrapper ">
-      <AddCategory item={selectedCategoryId} />
+      <AddCategory item={selectedCategory} />
       <div className="categories-dash">
         {isLoading ? (
           <h4>Loading...</h4>

@@ -5,11 +5,14 @@ import { FileParser } from "../../../utils/FileParser";
 import ProductService from "../../../services/ProductService";
 import { toast } from "react-toastify";
 import { MB, VALID_TYPE } from "../../../config/config";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CategoryService from "../../../services/CategoryService";
 
-const AddProduct = () => {
+const AddProduct = ({ item }) => {
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updateImage, setUpdateImage] = useState(false);
+  const inputRef = useRef(null);
+
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -20,66 +23,115 @@ const AddProduct = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const formik = useFormik({
-    initialValues: {
-      title: "",
-      price: "",
-      stock: "",
-      brand: "",
-      category: "",
-      description: "",
-      thumbnail: null,
-      features: "",
-      width: "",
-      height: "",
-      depth: "",
-    },
-    validationSchema: Yup.object({
-      title: Yup.string().required("required"),
-      price: Yup.string().required("required"),
-      stock: Yup.string().required("required"),
-      brand: Yup.string().required("required"),
-      category: Yup.string().required("required"),
-      description: Yup.string().required("required"),
-      thumbnail: Yup.mixed()
-        .required("required")
-        .test("fileType", "Invalid file type", (value) =>
-          VALID_TYPE.includes(value.type)
-        )
-        .test("fileSize", "Invalid file size", (value) => value.size < 2 * MB),
-      features: Yup.string().required("required"),
-      width: Yup.string().required("required"),
-      height: Yup.string().required("required"),
-      depth: Yup.string().required("required"),
-    }),
-    onSubmit: (values) => {
-      FileParser(values.thumbnail)
-        .then((res) => {
-          values.thumbnail = res;
-          console.log(values);
-          ProductService.addProduct(values)
-            .then((res) => {
-              toast(res.data, {
-                position: "top-right",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      formik.resetForm();
-    },
+  let initialValues = {
+    title: "",
+    price: "",
+    stock: "",
+    brand: "",
+    category: "",
+    description: "",
+    thumbnail: null,
+    features: "",
+    width: "",
+    height: "",
+    depth: "",
+  };
+  const validationSchema = Yup.object({
+    title: Yup.string().required("required"),
+    price: Yup.string().required("required"),
+    stock: Yup.string().required("required"),
+    brand: Yup.string().required("required"),
+    category: Yup.string().required("required"),
+    description: Yup.string().required("required"),
+    features: Yup.string().required("required"),
+    width: Yup.string().required("required"),
+    height: Yup.string().required("required"),
+    depth: Yup.string().required("required"),
+    thumbnail:
+      isUpdating && updateImage
+        ? Yup.mixed().notRequired()
+        : Yup.mixed()
+            .required("required")
+            .test("fileType", "Invalid file type", (value) =>
+              VALID_TYPE.includes(value.type)
+            )
+            .test(
+              "fileSize",
+              "Invalid file size",
+              (value) => value.size < 2 * MB
+            ),
   });
+
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const processedValues = { ...values };
+        if (!isUpdating || (isUpdating && !updateImage)) {
+          processedValues.thumbnail = await FileParser(values.thumbnail);
+        }
+        isUpdating
+          ? await ProductService.updateProduct(item._id, processedValues)
+          : await ProductService.addProduct(processedValues);
+        toast.success(`Product ${isUpdating ? "updated" : "added"}`);
+        formik.resetForm();
+        setIsUpdating(false);
+      } catch (err) {
+        console.error(err);
+        toast.error("An error occured");
+      }
+    },
+    // onSubmit: (values) => {
+    //   FileParser(values.thumbnail)
+    //     .then((res) => {
+    //       values.thumbnail = res;
+    //       ProductService.addProduct(values)
+    //         .then((res) => {
+    //           toast(res.data, {
+    //             position: "top-right",
+    //             autoClose: 1500,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             theme: "light",
+    //           });
+    //         })
+    //         .catch((err) => {
+    //           console.log(err);
+    //         });
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    //   formik.resetForm();
+    // },
+  });
+  useEffect(() => {
+    if (item) {
+      formik.setValues({
+        title: item.title,
+        price: item.price,
+        stock: item.stock,
+        brand: item.brand,
+        category: item.category,
+        description: item.description,
+        thumbnail: item.thumbnail,
+        features: item.features,
+        width: item.width,
+        height: item.height,
+        depth: item.depth,
+      });
+      setIsUpdating(true);
+      setUpdateImage(true);
+      inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    } else {
+      setIsUpdating(false);
+      setUpdateImage(false);
+    }
+  }, [item, formik.setValues]);
 
   const showError = (name) =>
     formik.errors[name] && formik.touched[name] && formik.errors[name];
@@ -95,6 +147,7 @@ const AddProduct = () => {
                   Title: <span>{showError("title")}</span>
                 </label>
                 <input
+                  ref={inputRef}
                   type="text"
                   name="title"
                   placeholder="Title..."
@@ -180,8 +233,9 @@ const AddProduct = () => {
               <input
                 type="file"
                 name="thumbnail"
-                onInput={(e) => {
-                  formik.setFieldValue(e.target.name, e.target.files[0]);
+                onChange={(e) => {
+                  formik.setFieldValue("thumbnail", e.target.files[0]);
+                  setUpdateImage(false);
                 }}
                 className={showError("thumbnail") ? "error file" : "file"}
               />
@@ -263,7 +317,9 @@ const AddProduct = () => {
           </div>
           <div className="wrapper"> </div>
 
-          <button type="submit">Add product</button>
+          <button type="submit">
+            {isUpdating ? "Update product" : "Add product"}
+          </button>
         </form>
       </div>
     </>

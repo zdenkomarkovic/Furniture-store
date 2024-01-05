@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductService from "../../../services/ProductService";
 import AddProduct from "../AddProduct/AddProduct";
 import { GoTrash } from "react-icons/go";
 import { LuPenLine } from "react-icons/lu";
 import "./ProductsDashboard.scss";
+import { toast } from "react-toastify";
 
 const ProductsDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     ProductService.getAllProducts()
@@ -20,9 +22,28 @@ const ProductsDashboard = () => {
       });
   }, [products]);
 
+  const handleDeleteProduct = (id) => {
+    const isConfirmed = window.confirm("Do you want to delete product");
+    if (isConfirmed) {
+      ProductService.deleteProduct(id)
+        .then((res) => {
+          toast.success("Product deleted");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("delete product canceled");
+    }
+  };
+
+  const handleEditProduct = (product) => {
+    setSelectedProduct(product);
+  };
+
   return (
     <div className="products-dash-wrapper">
-      <AddProduct />
+      <AddProduct item={selectedProduct} />
       <div className="products-dash">
         {isLoading ? (
           <h4>Loading...</h4>
@@ -60,12 +81,15 @@ const ProductsDashboard = () => {
                       <img src={product.thumbnail} />
                     </td>
                     <td>
-                      <button>
+                      <button onClick={() => handleEditProduct(product)}>
                         <LuPenLine />
                       </button>
                     </td>
                     <td>
-                      <button className="delete">
+                      <button
+                        className="delete"
+                        onClick={() => handleDeleteProduct(product._id)}
+                      >
                         <GoTrash />
                       </button>
                     </td>

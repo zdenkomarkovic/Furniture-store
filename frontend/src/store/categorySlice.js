@@ -9,12 +9,7 @@ const categorySlice = createSlice({
     setAllCategories: (state, action) => {
       state.categories = action.payload;
     },
-    // deleteSingleCategory: (state, action) => {
-    //   state.categories = state.categories.filter((cat) => {
-    //     cat._id !== action.payload;
-    //   });
-    // },
   },
 });
-export const { setAllCategories, deleteSingleCategory } = categorySlice.actions;
+export const { setAllCategories } = categorySlice.actions;
 export default categorySlice.reducer;
