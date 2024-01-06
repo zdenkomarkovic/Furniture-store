@@ -12,13 +12,136 @@
     padding: 20px 10px;
   }
   .products-dash {
-    margin-top: 50px;
+    margin-top: 30px;
     font-size: 20px;
     @include devices(mobile) {
       padding-inline: auto;
     }
+
     h4 {
       text-align: center;
+    }
+    .search {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.25px;
+      flex-wrap: wrap;
+      @include devices(tablet) {
+        font-size: 14px;
+        gap: 23px;
+      }
+      @include devices(mobile) {
+        font-size: 10px;
+        gap: 10px;
+      }
+      input {
+        padding: 13px;
+        border-radius: 8px;
+        border: 1px solid #cfcfcf;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.25px;
+        width: 300px;
+        @include devices(tablet) {
+          font-size: 14px;
+          padding: 10px;
+          width: 220px;
+        }
+        @include devices(mobile) {
+          font-size: 10px;
+          padding: 4px;
+          width: 150px;
+          border-radius: 5px;
+        }
+        &::placeholder {
+          font-size: 17px;
+          opacity: 1;
+          @include devices(tablet) {
+            font-size: 14px;
+          }
+          @include devices(mobile) {
+            font-size: 10px;
+          }
+        }
+      }
+      .custom-dropdown {
+        width: 168px;
+        padding: 13px;
+        border-radius: 8px;
+        border: 1px solid #cfcfcf;
+        font-size: 17px;
+        font-weight: 700;
+        letter-spacing: -0.25px;
+        position: relative;
+
+        @include devices(tablet) {
+          font-size: 14px;
+          padding: 10px;
+          width: 139px;
+        }
+        @include devices(mobile) {
+          font-size: 10px;
+          padding: 3px;
+          width: 95px;
+          border-radius: 5px;
+        }
+        .dropdown-selected {
+          display: flex;
+          align-items: center;
+          opacity: 0.6;
+          cursor: pointer;
+          justify-content: center;
+          .icon {
+            margin-left: 10px;
+          }
+        }
+        .dropdown-options {
+          position: absolute;
+          z-index: 10;
+          background-color: white;
+          width: 168px;
+          border: 1px solid #cfcfcf;
+          border-radius: 8px;
+          top: 51px;
+          left: 0;
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+          padding: 13px;
+          @include devices(tablet) {
+            top: 45px;
+            width: 139px;
+            padding: 10;
+          }
+          @include devices(mobile) {
+            top: 31px;
+            width: 95px;
+            border-radius: 5px;
+            padding: 3px;
+          }
+
+          cursor: pointer;
+          .dropdown-option {
+            opacity: 0.6;
+            padding-block: 2px;
+            &:hover {
+              color: $color-accent;
+              opacity: 1;
+            }
+            @include devices(tablet) {
+              font-size: 14px;
+              padding-block: 1px;
+            }
+            @include devices(mobile) {
+              font-size: 11px;
+              padding-block: 0;
+              line-height: 22px;
+            }
+          }
+        }
+      }
     }
     table {
       @include devices(tablet) {

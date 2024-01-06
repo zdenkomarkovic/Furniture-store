@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProductService from "../../../services/ProductService";
 import AddProduct from "../AddProduct/AddProduct";
 import { GoTrash } from "react-icons/go";
 import { LuPenLine } from "react-icons/lu";
 import "./ProductsDashboard.scss";
 import { toast } from "react-toastify";
+import { SlArrowDown } from "react-icons/sl";
 
 const ProductsDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +14,9 @@ const ProductsDashboard = () => {
   const [search, setSearch] = useState("");
   const [importCategories, setImportCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
 
   const handleImportCategories = (categories) => {
     setImportCategories(categories);
@@ -63,6 +67,25 @@ const ProductsDashboard = () => {
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setIsDropdownOpen(false);
+  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div className="products-dash-wrapper">
       <AddProduct
@@ -75,20 +98,45 @@ const ProductsDashboard = () => {
           <h4>Loading...</h4>
         ) : (
           <div>
-            <input
-              type="text"
-              placeholder="Search Products..."
-              value={search}
-              onChange={handleSearchChange}
-            />
-            <select value={selectedCategory} onChange={handleCategoryChange}>
-              <option value="">All Categories</option>
-              {importCategories.map((category, index) => (
-                <option key={index} value={category._id}>
-                  {category.title}
-                </option>
-              ))}
-            </select>
+            <div className="search">
+              <input
+                type="text"
+                placeholder="Search Products..."
+                value={search}
+                onChange={handleSearchChange}
+              />
+              <div className="custom-dropdown" ref={dropdownRef}>
+                <div className="dropdown-selected" onClick={toggleDropdown}>
+                  {selectedCategory === "" ? (
+                    <>
+                      All Categories <SlArrowDown className="icon" />
+                    </>
+                  ) : (
+                    importCategories.find((c) => c._id === selectedCategory)
+                      ?.title
+                  )}
+                </div>
+                {isDropdownOpen && (
+                  <div className="dropdown-options">
+                    <div
+                      className="dropdown-option"
+                      onClick={() => handleCategoryClick("")}
+                    >
+                      All Categories
+                    </div>
+                    {importCategories.map((category, index) => (
+                      <div
+                        key={index}
+                        className="dropdown-option"
+                        onClick={() => handleCategoryClick(category._id)}
+                      >
+                        {category.title}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
             <table>
               <thead>
                 <tr>
