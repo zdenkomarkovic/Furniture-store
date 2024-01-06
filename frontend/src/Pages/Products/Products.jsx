@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Header from "../../Components/Header/Header";
 import ProductService from "../../services/ProductService";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Products.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { storeAllProducts } from "../../store/productSlice";
 import CategoryService from "../../services/CategoryService";
 import { SlArrowDown } from "react-icons/sl";
+import { setAllCategories } from "../../store/categorySlice";
 
 const Products = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,23 +25,32 @@ const Products = () => {
   const dropdownRef = useRef(null);
   const categoryDropdownRef = useRef(null);
 
-  useEffect(() => {
-    ProductService.getAllProducts()
-      .then((res) => {
-        dispatch(storeAllProducts(res.data));
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategoryFromURL = queryParams.get("category");
 
+  console.log(queryParams);
+  console.log(selectedCategoryFromURL);
+
+  useEffect(() => {
+    const fetchProductsAndCategories = async () => {
+      setIsLoading(true);
+      try {
+        const products = await ProductService.getAllProducts();
+        const categories = await CategoryService.allCategories();
+        dispatch(storeAllProducts(products.data));
+        setCategories(categories.data);
+        if (selectedCategoryFromURL) {
+          setSelectedCategory(selectedCategoryFromURL);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
-      });
-    CategoryService.allCategories()
-      .then((res) => {
-        setCategories(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+      }
+    };
+    fetchProductsAndCategories();
+  }, [selectedCategoryFromURL, dispatch]);
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);

@@ -3,6 +3,8 @@ import "./Categories.scss";
 import { useEffect, useRef, useState } from "react";
 import CategoryService from "../../services/CategoryService";
 import { setAllCategories } from "../../store/categorySlice";
+import { Link } from "react-router-dom";
+import { routes } from "../../router/routes";
 
 const Categories = () => {
   const [current, setCurrent] = useState(0);
@@ -148,10 +150,15 @@ const Categories = () => {
             else if (i === 2) positionClass = "right";
           }
           return (
-            <div key={i} className={`category-item ${positionClass}`}>
-              <h6>{category.title}</h6>
-              <img src={category.image} />
-            </div>
+            <Link
+              key={i}
+              to={`${routes.PRODUCTS.path}?category=${category._id}`}
+            >
+              <div className={`category-item ${positionClass}`}>
+                <h6>{category.title}</h6>
+                <img src={category.image} />
+              </div>
+            </Link>
           );
         })}
       </div>
