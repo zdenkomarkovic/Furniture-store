@@ -75,6 +75,12 @@ const AddCategory = ({ item }) => {
   }, [item, formik.setValues]);
   const showError = (name) =>
     formik.errors[name] && formik.touched[name] && formik.errors[name];
+
+  const handleCancelUpdate = () => {
+    setIsUpdating(false);
+    formik.resetForm();
+  };
+
   return (
     <div className="addcategory-wrapper">
       <form onSubmit={formik.handleSubmit}>
@@ -110,6 +116,7 @@ const AddCategory = ({ item }) => {
         <button type="submit">
           {isUpdating ? "Update category" : "Add category"}
         </button>
+        {isUpdating && <button onClick={handleCancelUpdate}>Cancel</button>}
       </form>
     </div>
   );

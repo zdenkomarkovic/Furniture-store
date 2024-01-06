@@ -138,6 +138,8 @@
       gap: 35px;
       a {
         color: $white;
+        text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+          1px 1px 0 black;
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 700;
@@ -150,6 +152,22 @@
         &.active {
           color: $color-accent;
           scale: 1.2;
+        }
+      }
+      p {
+        color: $white;
+        text-shadow: -1px -1px 0 $color-primary, 1px -1px 0 $color-primary,
+          -1px 1px 0 $color-primary, 1px 1px 0 $color-primary;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 700;
+        font-size: 13px;
+        transition: $transition;
+        &:hover {
+          color: $color-accent;
+        }
+        &.active {
+          color: $color-accent;
         }
       }
     }
@@ -179,6 +197,7 @@
 
       p {
         color: $white;
+
         text-transform: uppercase;
         letter-spacing: 2px;
         font-weight: 700;

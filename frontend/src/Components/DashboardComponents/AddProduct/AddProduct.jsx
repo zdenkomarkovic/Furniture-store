@@ -8,7 +8,7 @@ import { MB, VALID_TYPE } from "../../../config/config";
 import { useEffect, useRef, useState } from "react";
 import CategoryService from "../../../services/CategoryService";
 
-const AddProduct = ({ item }) => {
+const AddProduct = ({ item, exportCategories }) => {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateImage, setUpdateImage] = useState(false);
   const inputRef = useRef(null);
@@ -19,9 +19,10 @@ const AddProduct = ({ item }) => {
     CategoryService.allCategories()
       .then((res) => {
         setCategories(res.data);
+        exportCategories(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [exportCategories]);
 
   let initialValues = {
     title: "",
@@ -82,32 +83,6 @@ const AddProduct = ({ item }) => {
         toast.error("An error occured");
       }
     },
-    // onSubmit: (values) => {
-    //   FileParser(values.thumbnail)
-    //     .then((res) => {
-    //       values.thumbnail = res;
-    //       ProductService.addProduct(values)
-    //         .then((res) => {
-    //           toast(res.data, {
-    //             position: "top-right",
-    //             autoClose: 1500,
-    //             hideProgressBar: false,
-    //             closeOnClick: true,
-    //             pauseOnHover: true,
-    //             draggable: true,
-    //             progress: undefined,
-    //             theme: "light",
-    //           });
-    //         })
-    //         .catch((err) => {
-    //           console.log(err);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    //   formik.resetForm();
-    // },
   });
   useEffect(() => {
     if (item) {
@@ -135,6 +110,11 @@ const AddProduct = ({ item }) => {
 
   const showError = (name) =>
     formik.errors[name] && formik.touched[name] && formik.errors[name];
+
+  const handleCancelUpdate = () => {
+    setIsUpdating(false);
+    formik.resetForm();
+  };
 
   return (
     <>
@@ -320,6 +300,7 @@ const AddProduct = ({ item }) => {
           <button type="submit">
             {isUpdating ? "Update product" : "Add product"}
           </button>
+          {isUpdating && <button onClick={handleCancelUpdate}>Cancel</button>}
         </form>
       </div>
     </>

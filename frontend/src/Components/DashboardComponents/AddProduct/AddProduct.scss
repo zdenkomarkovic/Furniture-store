@@ -38,6 +38,7 @@
   button {
     @include btn;
     margin-top: 20px;
+    margin-right: 20px;
     @include devices(tablet) {
       margin-top: 30px;
     }

@@ -10,6 +10,13 @@ const ProductsDashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [search, setSearch] = useState("");
+  const [importCategories, setImportCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const handleImportCategories = (categories) => {
+    setImportCategories(categories);
+  };
 
   useEffect(() => {
     ProductService.getAllProducts()
@@ -41,63 +48,98 @@ const ProductsDashboard = () => {
     setSelectedProduct(product);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredProducts = products
+    .filter((product) =>
+      search ? product.title.toLowerCase().includes(search.toLowerCase()) : true
+    )
+    .filter((product) =>
+      selectedCategory ? product.category === selectedCategory : true
+    );
+
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
   return (
     <div className="products-dash-wrapper">
-      <AddProduct item={selectedProduct} />
+      <AddProduct
+        item={selectedProduct}
+        exportCategories={handleImportCategories}
+      />
+
       <div className="products-dash">
         {isLoading ? (
           <h4>Loading...</h4>
         ) : (
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th className="view">Name:</th>
-                <th className="view">Price:</th>
-                <th className="view">Stock:</th>
-                <th className="view">Discount:</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products?.map((product, i) => {
-                return (
-                  <tr key={i}>
-                    <td>
-                      <p>{i + 1}</p>
-                    </td>
-                    <td>
-                      <p>{product.title}</p>
-                    </td>
-                    <td className="view">
-                      <p>{product.price} $</p>
-                    </td>
-                    <td className="view">
-                      <p>{product.stock}</p>
-                    </td>
-                    <td className="view">
-                      <p>{product.discountPercentage} %</p>
-                    </td>
-                    <td>
-                      <img src={product.thumbnail} />
-                    </td>
-                    <td>
-                      <button onClick={() => handleEditProduct(product)}>
-                        <LuPenLine />
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="delete"
-                        onClick={() => handleDeleteProduct(product._id)}
-                      >
-                        <GoTrash />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div>
+            <input
+              type="text"
+              placeholder="Search Products..."
+              value={search}
+              onChange={handleSearchChange}
+            />
+            <select value={selectedCategory} onChange={handleCategoryChange}>
+              <option value="">All Categories</option>
+              {importCategories.map((category, index) => (
+                <option key={index} value={category._id}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th className="view">Name:</th>
+                  <th className="view">Price:</th>
+                  <th className="view">Stock:</th>
+                  <th className="view">Discount:</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredProducts?.map((product, i) => {
+                  return (
+                    <tr key={i}>
+                      <td>
+                        <p>{i + 1}</p>
+                      </td>
+                      <td>
+                        <p>{product.title}</p>
+                      </td>
+                      <td className="view">
+                        <p>{product.price} $</p>
+                      </td>
+                      <td className="view">
+                        <p>{product.stock}</p>
+                      </td>
+                      <td className="view">
+                        <p>{product.discountPercentage} %</p>
+                      </td>
+                      <td>
+                        <img src={product.thumbnail} />
+                      </td>
+                      <td>
+                        <button onClick={() => handleEditProduct(product)}>
+                          <LuPenLine />
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          className="delete"
+                          onClick={() => handleDeleteProduct(product._id)}
+                        >
+                          <GoTrash />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
