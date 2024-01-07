@@ -37,6 +37,19 @@
       gap: 16px;
       font-size: 18px;
       font-weight: 500;
+      label {
+        @include label;
+        .error-msg {
+          color: $color-error;
+          text-transform: capitalize;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.2px;
+        }
+        &.error {
+          color: $color-error;
+        }
+      }
       input {
         @include input;
         font-size: 18px;
@@ -48,6 +61,7 @@
           outline: 1px solid $color-error;
         }
       }
+
       button {
         @include btn;
         font-size: 18px;

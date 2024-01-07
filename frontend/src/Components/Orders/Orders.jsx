@@ -9,7 +9,6 @@ const Orders = () => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const { orders } = useSelector((state) => state.orderStore);
-  console.log(orders);
 
   useEffect(() => {
     OrderService.allOrders()

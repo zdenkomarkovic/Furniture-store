@@ -64,10 +64,6 @@ const ProductsDashboard = () => {
       selectedCategory ? product.category === selectedCategory : true
     );
 
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
-
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };

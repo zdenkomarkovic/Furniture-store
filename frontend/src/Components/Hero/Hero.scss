@@ -10,7 +10,7 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    padding-block: 50px;
+    padding-block: 30px;
 
     @include devices(tablet) {
       flex-direction: column;
@@ -25,7 +25,7 @@
 
     .text {
       color: $white;
-      padding-bottom: 50px;
+      padding-bottom: 10px;
       @include devices(mobile) {
         margin-top: 60px;
         margin-bottom: 0;
@@ -82,7 +82,7 @@
           right: 0;
           margin-inline: auto;
 
-          height: auto;
+          height: 220px;
           width: 90%;
           border-radius: 15px;
         }

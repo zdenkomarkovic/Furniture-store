@@ -18,11 +18,14 @@
       label {
         @include label;
         &.error {
-          color: red;
+          color: $color-error;
         }
       }
       input {
         @include input;
+        &.error {
+          outline: 1px solid $color-error;
+        }
       }
     }
     button {
