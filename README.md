@@ -2,6 +2,7 @@
 
  # E-Commerce Platform
  This platform is built using React, Node, and MongoDB.
+ https://furniture-store-r4p8.vercel.app/
 
  ## Features
  - Product search by name and category
